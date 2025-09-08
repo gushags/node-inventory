@@ -4,7 +4,7 @@ const { Router } = require('express');
 
 const indexRouter = Router();
 
-indexRouter.get('/', (res, req) => {
+indexRouter.get('/', (req, res) => {
   res.render('index', {
     title: 'Node Inventory',
   });
