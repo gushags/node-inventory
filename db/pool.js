@@ -10,7 +10,8 @@ module.exports = new Pool({
   username: PGUSER,
   password: PGPASSWORD,
   port: PGPORT,
-  ssl: {
-    require: true,
-  },
+  // uncomment for production
+  // ssl: {
+  //   require: true,
+  // },
 });
