@@ -1,11 +1,3 @@
-#! /usr/bin/env node
-require('dotenv').config();
-
-const { Client } = require('pg');
-
-const { PGPOSTGRESQLURL } = process.env;
-
-const SQL = `
 DROP TABLE IF EXISTS furniture_inventory;
 DROP TABLE IF EXISTS furniture;
 DROP TABLE IF EXISTS wood;
@@ -126,9 +118,10 @@ VALUES
     ('San Sebastien End Table', 'Nec dubitamus multa iter quae et nos invenerat.')
     ;
 
+-- Hemingway
 INSERT INTO furniture_inventory (finv_quantity, furn_id, wood_id, collection_id, ftype_id, room_id, finv_sku)
   VALUES
-      --chair
+      --chair (303)
       (30, 500, 100, 202, 303, 401, 'BGC-Birch'),
       (40, 500, 101, 202, 303, 401, 'BGC-Cherry'),
       (40, 500, 102, 202, 303, 401, 'BGC-Oak'),
@@ -175,19 +168,4 @@ INSERT INTO furniture_inventory (finv_quantity, furn_id, wood_id, collection_id,
       (4, 509, 100, 202, 305, 400, 'SSD-Birch'),
       (7, 509, 101, 202, 305, 400, 'SSD-Cherry'),
       (2, 509, 102, 202, 305, 400, 'SSD-Oak'),
-      (2, 509, 103, 202, 305, 400, 'SSD-Walnut');
-    `;
-
-async function main() {
-  console.log('seeding...');
-  const client = new Client({
-    connectionString: PGPOSTGRESQLURL, // Local is: 'postgresql://jeff@localhost:5432/woodworking'
-  });
-
-  await client.connect();
-  await client.query(SQL);
-  await client.end();
-  console.log('done');
-}
-
-main();
+      (2, 509, 103, 202, 305, 400, 'SSD-Walnut'),
