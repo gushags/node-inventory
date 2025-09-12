@@ -1,12 +1,10 @@
-// routes/indexrouter.js
+// routes/indexRouter.js
 
 const { Router } = require('express');
+const { getAllInventory } = require('../controllers/indexController');
 
 const indexRouter = Router();
 
-indexRouter.get('/', (req, res) => {
-  res.render('index', {
-    title: 'Node Inventory',
-  });
-});
+indexRouter.get('/', getAllInventory);
+
 module.exports = indexRouter;

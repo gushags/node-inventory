@@ -225,15 +225,18 @@ INSERT INTO furniture_inventory (finv_quantity, furn_id, wood_id, collection_id,
       (3, 517, 103, 200, 308, 401, 'TMJT-Walnut');
 
 -- Query to get all
-SELECT furn_name, wood_name, ftype_name, collection_name, finv_sku, finv_quantity FROM furniture_inventory
+SELECT furn_name, wood_name, ftype_name, collection_name, room_name, finv_sku, finv_quantity FROM furniture_inventory
     JOIN furniture
         ON furniture.furn_id = furniture_inventory.furn_id
     JOIN wood
         ON wood.wood_id = furniture_inventory.wood_id
     JOIN furniture_types
         ON furniture_types.ftype_id = furniture_inventory.ftype_id
+    JOIN rooms
+        ON rooms.room_id = furniture_inventory.room_id
     JOIN collections
-        ON collections.collection_id = furniture_inventory.collection_id;
+        ON collections.collection_id = furniture_inventory.collection_id
+    ORDER BY collection_name, furn_name;
 
 -- Looks like this:
 

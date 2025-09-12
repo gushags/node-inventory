@@ -16,10 +16,9 @@ app.set('view engine', 'ejs');
 const assetsPath = path.join(__dirname, 'public');
 app.use(express.static(assetsPath));
 
-const indexRouter = require('./routes/indexRouter.js');
+const indexRouter = require('./routes/indexRouter');
 
 // Routers
-
 app.use('/', indexRouter);
 
 // Errorhandling router
