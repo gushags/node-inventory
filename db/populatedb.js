@@ -45,7 +45,11 @@ CREATE TABLE furniture (
   furn_id INT GENERATED ALWAYS AS IDENTITY,
   furn_name VARCHAR(255) NOT NULL,
   furn_description TEXT,
-  PRIMARY KEY(furn_id)
+  collection_id INT,
+  PRIMARY KEY(furn_id),
+  CONSTRAINT fk_collections
+      FOREIGN KEY(collection_id)
+        REFERENCES collections(collection_id)
 );
 ALTER SEQUENCE furniture_furn_id_seq RESTART WITH 500;
 
@@ -112,22 +116,34 @@ VALUES
     ('Family Room'),
     ('Outdoor');
 
-INSERT INTO furniture (furn_name, furn_description)
+INSERT INTO furniture (furn_name, furn_description, collection_id)
 VALUES
-    ('Bill Gorton Chair', 'Nec dubitamus multa iter quae et nos invenerat.'),
-    ('Jake Barnes Table', 'Gallia est omnis divisa in partes tres, quarum.'),
-    ('Robert Cohn Hutch', 'Unam incolunt Belgae, aliam Aquitani, tertiam.'),
-    ('Pamplona Deckchair', 'Quisque ut dolor gravida, placerat libero vel, euismod.'),
-    ('Pedro Romero Bench', 'Ullamco laboris nisi ut aliquid ex ea commodi consequat.'),
-    ('San Sebastien Bed', 'Magna pars studiorum, prodita quaerimus.'),
-    ('Brett Ashley Headboard', 'Paullum deliquit, ponderibus modulisque suis ratio utitur.'),
-    ('Cafe Side Table', 'Paullum deliquit, ponderibus modulisque suis ratio utitur.'),
-    ('San Sebastien Dresser', 'Lorem ipsum dolor sit amet, consectetur adipisici elit.'),
-    ('San Sebastien End Table', 'Nec dubitamus multa iter quae et nos invenerat.')
+    -- Hemingway Collection
+    ('Bill Gorton Chair', 'Nec dubitamus multa iter quae et nos invenerat.', 202),
+    ('Jake Barnes Table', 'Gallia est omnis divisa in partes tres, quarum.', 202),
+    ('Robert Cohn Hutch', 'Unam incolunt Belgae, aliam Aquitani, tertiam.', 202),
+    ('Pamplona Deckchair', 'Quisque ut dolor gravida, placerat libero vel, euismod.', 202),
+    ('Pedro Romero Bench', 'Ullamco laboris nisi ut aliquid ex ea commodi consequat.', 202),
+    ('San Sebastien Bed', 'Magna pars studiorum, prodita quaerimus.', 202),
+    ('Brett Ashley Headboard', 'Paullum deliquit, ponderibus modulisque suis ratio utitur.', 202),
+    ('Cafe Side Table', 'Paullum deliquit, ponderibus modulisque suis ratio utitur.', 202),
+    ('San Sebastien Dresser', 'Lorem ipsum dolor sit amet, consectetur adipisici elit.', 202),
+    ('San Sebastien End Table', 'Nec dubitamus multa iter quae et nos invenerat.', 202),
+    -- Fitgerald Collection
+    ('Jordan Baker Deckchair', 'Phasellus laoreet lorem vel dolor tempus vehicula.', 201),
+    ('Jay Gatsby Chair', 'Paullum deliquit, ponderibus modulisque suis ratio utitur.', 201),
+    ('Daisy Buchanan Table', 'Gallia est omnis divisa in partes tres, quarum.', 201),
+    ('Tom Buchanan Dresser', 'Quo usque tandem abutere, Catilina, patientia nostra?', 201),
+    ('Myrtle End Table', 'Gallia est omnis divisa in partes tres, quarum.', 201),
+    ('Nick Carraway Bench', 'Cras mattis iudicium purus sit amet fermentum.', 201),
+    -- Ezra Collection
+    ('Cantos Chair', 'Quisque ut dolor gravida, placerat libero vel, euismod.', 200),
+    ('Le Mot Juste Table', 'Inmensae subtilitatis, obscuris et malesuada fames.', 200)
     ;
 
 INSERT INTO furniture_inventory (finv_quantity, furn_id, wood_id, collection_id, ftype_id, room_id, finv_sku)
   VALUES
+      --Hemingway
       --chair
       (30, 500, 100, 202, 303, 401, 'BGC-Birch'),
       (40, 500, 101, 202, 303, 401, 'BGC-Cherry'),
@@ -155,12 +171,12 @@ INSERT INTO furniture_inventory (finv_quantity, furn_id, wood_id, collection_id,
       (2, 505, 100, 202, 300, 400, 'SSB-Birch'),
       (1, 505, 101, 202, 300, 400, 'SSB-Cherry'),
       (2, 505, 102, 202, 300, 400, 'SSB-Oak'),
-      (2, 505, 103, 202, 300, 400, 'ssb-Walnut'),
+      (2, 505, 103, 202, 300, 400, 'SSB-Walnut'),
       --headboard
-      (2, 506, 100, 202, 306, 400, 'SSB-Birch'),
-      (1, 506, 101, 202, 306, 400, 'SSB-Cherry'),
-      (2, 506, 102, 202, 306, 400, 'SSB-Oak'),
-      (2, 506, 103, 202, 306, 400, 'SSB-Walnut'),
+      (2, 506, 100, 202, 306, 400, 'SSH-Birch'),
+      (1, 506, 101, 202, 306, 400, 'SSH-Cherry'),
+      (2, 506, 102, 202, 306, 400, 'SSH-Oak'),
+      (2, 506, 103, 202, 306, 400, 'SSH-Walnut'),
       --side table
       (8, 507, 100, 202, 309, 402, 'CST-Birch'),
       (6, 507, 101, 202, 309, 402, 'CST-Cherry'),
@@ -172,10 +188,48 @@ INSERT INTO furniture_inventory (finv_quantity, furn_id, wood_id, collection_id,
       (1, 508, 102, 202, 304, 400, 'SSD-Oak'),
       (1, 508, 103, 202, 304, 400, 'SSD-Walnut'),
       --end table
-      (4, 509, 100, 202, 305, 400, 'SSD-Birch'),
-      (7, 509, 101, 202, 305, 400, 'SSD-Cherry'),
-      (2, 509, 102, 202, 305, 400, 'SSD-Oak'),
-      (2, 509, 103, 202, 305, 400, 'SSD-Walnut');
+      (4, 509, 100, 202, 305, 400, 'SSET-Birch'),
+      (7, 509, 101, 202, 305, 400, 'SSET-Cherry'),
+      (2, 509, 102, 202, 305, 400, 'SSET-Oak'),
+      (2, 509, 103, 202, 305, 400, 'SSET-Walnut'),
+      --Fitzgerald
+      --deckchair
+      (5, 510, 102, 201, 302, 403, 'JBD-Oak'),
+      (2, 510, 103, 201, 302, 403, 'JBD-Walnut'),
+      --chair
+      (20, 511, 100, 201, 303, 401, 'JGC-Birch'),
+      (41, 511, 101, 201, 303, 401, 'JGC-Cherry'),
+      (34, 511, 102, 201, 303, 401, 'JGC-Oak'),
+      (20, 511, 103, 201, 303, 401, 'JGC-Walnut'),
+      --table
+      (2, 512, 100, 201, 308, 401, 'DBT-Birch'),
+      (8, 512, 101, 201, 308, 401, 'DBT-Cherry'),
+      (3, 512, 102, 201, 308, 401, 'DBT-Oak'),
+      (1, 512, 103, 201, 308, 401, 'DBT-Walnut'),
+      --dresser
+      (2, 513, 100, 201, 304, 400, 'TBD-Birch'),
+      (3, 513, 101, 201, 304, 400, 'TBD-Cherry'),
+      (4, 513, 102, 201, 304, 400, 'TBD-Oak'),
+      (1, 513, 103, 201, 304, 400, 'TBD-Walnut'),
+      --end table
+      (7, 514, 100, 201, 305, 400, 'MET-Birch'),
+      (9, 514, 101, 201, 305, 400, 'MET-Cherry'),
+      (6, 514, 102, 201, 305, 400, 'MET-Oak'),
+      (8, 514, 103, 201, 305, 400, 'MET-Walnut'),
+      --bench
+      (12, 515, 100, 201, 301, 402, 'NCB-Birch'),
+      (10, 515, 101, 201, 301, 402, 'NCB-Cherry'),
+      (22, 515, 102, 201, 301, 402, 'NCB-Oak'),
+      (17, 515, 103, 201, 301, 402, 'NCB-Walnut'),
+      --Ezra Collection
+      --chair
+      (32, 516, 101, 200, 303, 401, 'CCH-Cherry'),
+      (40, 516, 102, 200, 303, 401, 'CCH-Oak'),
+      (22, 516, 103, 200, 303, 401, 'CCH-Walnut'),
+      --table
+      (2, 517, 101, 200, 308, 401, 'TMJT-Cherry'),
+      (9, 517, 102, 200, 308, 401, 'TMJT-Oak'),
+      (3, 517, 103, 200, 308, 401, 'TMJT-Walnut');
     `;
 
 async function main() {
