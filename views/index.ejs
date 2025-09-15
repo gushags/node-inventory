@@ -6,27 +6,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles.css" />
+
     <title><%= title %></title>
   </head>
   <body>
     <h1><%= title %></h1>
     <div class="categories">
-      <div>
+      <form name="collections">
         Collection
         <input type="radio" name="collection" value="0" checked />All
-        <input type="radio" name="collection" value="Ezra" />Ezra
-        <input type="radio" name="collection" value="Fitzgerald" />Fitzgerald
-        <input type="radio" name="collection" value="Hemingway" />Hemingway
-      </div>
-      <div>
+        <input type="radio" name="collection" value="Ezra%20Collection" />Ezra
+        <input
+          type="radio"
+          name="collection"
+          value="Fitzgerald%20Collection"
+        />Fitzgerald
+        <input
+          type="radio"
+          name="collection"
+          value="Hemingway%20Collection"
+        />Hemingway
+      </form>
+      <form name="woods">
         Wood
         <input type="radio" name="wood" value="0" checked />All
         <input type="radio" name="wood" value="Birch" />Birch
         <input type="radio" name="wood" value="Cherry" />Cherry
         <input type="radio" name="wood" value="Oak" />Oak
         <input type="radio" name="wood" value="Walnut" />Walnut
-      </div>
-      <div>
+      </form>
+      <form name="ftypes">
         Furniture type
         <input type="radio" name="ftype" value="0" checked />All
         <input type="radio" name="ftype" value="Bed" />Bed
@@ -38,15 +47,16 @@
         <input type="radio" name="ftype" value="Hutch" />Hutch
         <input type="radio" name="ftype" value="Kitchen%20Table" />Kitchen Table
         <input type="radio" name="ftype" value="Side%20Table" />Side Table
-      </div>
-      <div>
-        Wood
+      </form>
+      <form name="rooms">
+        Rooms
         <input type="radio" name="room" value="0" checked />All
         <input type="radio" name="room" value="Bedroom" />Bedroom
         <input type="radio" name="room" value="Dining%20Room" />Dining Room
         <input type="radio" name="room" value="Family%20Room" />Family Room
         <input type="radio" name="room" value="Outdoor" />Outdoor
-      </div>
+      </form>
+      <button type="submit" onclick="submitCategorySearch()">Submit</button>
     </div>
     <table>
       <tr>
@@ -70,5 +80,6 @@
       </tr>
       <% }) %>
     </table>
+    <script src="../index.js"></script>
   </body>
 </html>
