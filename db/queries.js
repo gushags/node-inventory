@@ -47,6 +47,7 @@ async function getInventoryByCategory(category) {
           AND ($2::text IS NULL OR wood_name = $2::text)
           AND ($3::text IS NULL OR ftype_name = $3::text)
           AND ($4::text IS NULL OR room_name = $4::text)
+      ORDER BY collection_name, furn_name
   `;
   const { rows } = await pool.query(INVENTORY_BY_CATEGORY, [
     catArray[0],
