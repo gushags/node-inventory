@@ -10,4 +10,14 @@ async function getAllInventory(req, res) {
   });
 }
 
-module.exports = { getAllInventory };
+async function getInventoryByCategory(req, res) {
+  const { category } = req.params;
+  console.log(req.params);
+  const inventory = await db.getInventoryByCategory(category);
+  res.render('index', {
+    title: `1912 Inc. Inventory: ${category}`,
+    inventory: inventory,
+  });
+}
+
+module.exports = { getAllInventory, getInventoryByCategory };

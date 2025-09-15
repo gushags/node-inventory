@@ -296,3 +296,14 @@ SELECT furn_name, wood_name, ftype_name, collection_name, finv_sku, finv_quantit
 --  San Sebastien Dresser   | Walnut    | Dresser       | Hemingway Collection | SSD-Walnut |             1
 --  San Sebastien End Table | Walnut    | End Table     | Hemingway Collection | SSD-Walnut |             2
 -- (10 rows)
+
+SELECT furn_name, wood_name, ftype_name, collection_name, finv_sku, finv_quantity FROM furniture_inventory
+    JOIN furniture
+        ON furniture.furn_id = furniture_inventory.furn_id
+    JOIN wood
+        ON wood.wood_id = furniture_inventory.wood_id
+    JOIN furniture_types
+        ON furniture_types.ftype_id = furniture_inventory.ftype_id
+    JOIN collections
+        ON collections.collection_id = furniture_inventory.collection_id
+    WHERE collection_name = $1, [collectionName]
