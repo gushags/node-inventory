@@ -70,14 +70,21 @@
       </tr>
       <% inventory.map((item) => { %>
       <tr>
-        <td><%= item.finv_quantity %></td>
+        <td>
+          <input
+            type="number"
+            name="quantity"
+            value="<%= item.finv_quantity %>"
+          />
+        </td>
         <td><%= item.furn_name %></td>
         <td><%= item.finv_sku %></td>
         <td><%= item.wood_name %></td>
         <td><%= item.ftype_name %></td>
         <td><%= item.collection_name %></td>
         <td><%= item.room_name %></td>
-        <td><button type="button">Edit</button></td>
+        <td><button type="button">Update</button></td>
+        <td><button type="button">Delete</button></td>
       </tr>
       <% }) %>
     </table>
