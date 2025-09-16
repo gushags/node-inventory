@@ -8,7 +8,17 @@
     <title><%= title %></title>
   </head>
   <body>
-    <p>Product name: <%= inventory.furn_name %></p>
-    <p>Quantity: <%= inventory.finv_quantity %></p>
+    <% if (alert) { %>
+    <div><%= alert %></div>
+    <% } %>
+    <form method="POST" action="/product/<%= inventory.finv_id %>">
+      <p>Product name: <%= inventory.furn_name %></p>
+      <input
+        type="number"
+        name="quantity"
+        value="<%= inventory.finv_quantity %>"
+      />
+      <button type="submit">Update</button>
+    </form>
   </body>
 </html>

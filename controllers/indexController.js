@@ -21,12 +21,27 @@ async function getInventoryByCategory(req, res) {
 
 async function getInventoryById(req, res) {
   const { id } = req.params;
-  console.log(id);
   const inventory = await db.getInventoryById(id);
   res.render('product', {
     title: 'Product',
+    alert: null,
+    inventory: inventory,
+  });
+}
+async function updateProductQuantityById(req, res) {
+  const { quantity } = req.body;
+  const finv_id = req.params.id;
+  const inventory = await db.updateProductQuantityById(finv_id, quantity);
+  res.render('product', {
+    title: 'Product',
+    alert: 'Product updated.',
     inventory: inventory,
   });
 }
 
-module.exports = { getAllInventory, getInventoryByCategory, getInventoryById };
+module.exports = {
+  getAllInventory,
+  getInventoryByCategory,
+  getInventoryById,
+  updateProductQuantityById,
+};
