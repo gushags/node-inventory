@@ -45,7 +45,6 @@ CREATE TABLE furniture (
   furn_id INT GENERATED ALWAYS AS IDENTITY,
   furn_name VARCHAR(255) NOT NULL,
   furn_description TEXT,
-  collection_id INT,
   PRIMARY KEY(furn_id),
   CONSTRAINT fk_collections
       FOREIGN KEY(collection_id)
@@ -65,19 +64,23 @@ CREATE TABLE furniture_inventory (
   PRIMARY KEY(finv_id),
   CONSTRAINT fk_furniture
       FOREIGN KEY(furn_id)
-        REFERENCES furniture(furn_id),
+        REFERENCES furniture(furn_id)
+            ON DELETE CASCADE,
   CONSTRAINT fk_wood
       FOREIGN KEY(wood_id)
         REFERENCES wood(wood_id),
   CONSTRAINT fk_collections
       FOREIGN KEY(collection_id)
-        REFERENCES collections(collection_id),
+        REFERENCES collections(collection_id)
+            ON DELETE SET NULL,
   CONSTRAINT fk_ftypes
       FOREIGN KEY(ftype_id)
-        REFERENCES furniture_types(ftype_id),
+        REFERENCES furniture_types(ftype_id)
+            ON DELETE SET NULL,
   CONSTRAINT fk_rooms
       FOREIGN KEY(room_id)
         REFERENCES rooms(room_id)
+            ON DELETE SET NULL
 );
 ALTER SEQUENCE furniture_inventory_finv_id_seq RESTART WITH 1000;
 
@@ -119,26 +122,26 @@ VALUES
 INSERT INTO furniture (furn_name, furn_description, collection_id)
 VALUES
     -- Hemingway Collection
-    ('Bill Gorton Chair', 'Nec dubitamus multa iter quae et nos invenerat.', 202),
-    ('Jake Barnes Table', 'Gallia est omnis divisa in partes tres, quarum.', 202),
-    ('Robert Cohn Hutch', 'Unam incolunt Belgae, aliam Aquitani, tertiam.', 202),
-    ('Pamplona Deckchair', 'Quisque ut dolor gravida, placerat libero vel, euismod.', 202),
-    ('Pedro Romero Bench', 'Ullamco laboris nisi ut aliquid ex ea commodi consequat.', 202),
-    ('San Sebastien Bed', 'Magna pars studiorum, prodita quaerimus.', 202),
-    ('Brett Ashley Headboard', 'Paullum deliquit, ponderibus modulisque suis ratio utitur.', 202),
-    ('Cafe Side Table', 'Paullum deliquit, ponderibus modulisque suis ratio utitur.', 202),
-    ('San Sebastien Dresser', 'Lorem ipsum dolor sit amet, consectetur adipisici elit.', 202),
-    ('San Sebastien End Table', 'Nec dubitamus multa iter quae et nos invenerat.', 202),
+    ('Bill Gorton Chair', 'Nec dubitamus multa iter quae et nos invenerat.'),
+    ('Jake Barnes Table', 'Gallia est omnis divisa in partes tres, quarum.'),
+    ('Robert Cohn Hutch', 'Unam incolunt Belgae, aliam Aquitani, tertiam.'),
+    ('Pamplona Deckchair', 'Quisque ut dolor gravida, placerat libero vel, euismod.'),
+    ('Pedro Romero Bench', 'Ullamco laboris nisi ut aliquid ex ea commodi consequat.'),
+    ('San Sebastien Bed', 'Magna pars studiorum, prodita quaerimus.'),
+    ('Brett Ashley Headboard', 'Paullum deliquit, ponderibus modulisque suis ratio utitur.'),
+    ('Cafe Side Table', 'Paullum deliquit, ponderibus modulisque suis ratio utitur.'),
+    ('San Sebastien Dresser', 'Lorem ipsum dolor sit amet, consectetur adipisici elit.'),
+    ('San Sebastien End Table', 'Nec dubitamus multa iter quae et nos invenerat.'),
     -- Fitgerald Collection
-    ('Jordan Baker Deckchair', 'Phasellus laoreet lorem vel dolor tempus vehicula.', 201),
-    ('Jay Gatsby Chair', 'Paullum deliquit, ponderibus modulisque suis ratio utitur.', 201),
-    ('Daisy Buchanan Table', 'Gallia est omnis divisa in partes tres, quarum.', 201),
-    ('Tom Buchanan Dresser', 'Quo usque tandem abutere, Catilina, patientia nostra?', 201),
-    ('Myrtle End Table', 'Gallia est omnis divisa in partes tres, quarum.', 201),
-    ('Nick Carraway Bench', 'Cras mattis iudicium purus sit amet fermentum.', 201),
+    ('Jordan Baker Deckchair', 'Phasellus laoreet lorem vel dolor tempus vehicula.'),
+    ('Jay Gatsby Chair', 'Paullum deliquit, ponderibus modulisque suis ratio utitur.'),
+    ('Daisy Buchanan Table', 'Gallia est omnis divisa in partes tres, quarum.'),
+    ('Tom Buchanan Dresser', 'Quo usque tandem abutere, Catilina, patientia nostra?'),
+    ('Myrtle End Table', 'Gallia est omnis divisa in partes tres, quarum.'),
+    ('Nick Carraway Bench', 'Cras mattis iudicium purus sit amet fermentum.'),
     -- Ezra Collection
-    ('Cantos Chair', 'Quisque ut dolor gravida, placerat libero vel, euismod.', 200),
-    ('Le Mot Juste Table', 'Inmensae subtilitatis, obscuris et malesuada fames.', 200)
+    ('Cantos Chair', 'Quisque ut dolor gravida, placerat libero vel, euismod.'),
+    ('Le Mot Juste Table', 'Inmensae subtilitatis, obscuris et malesuada fames.')
     ;
 
 INSERT INTO furniture_inventory (finv_quantity, furn_id, wood_id, collection_id, ftype_id, room_id, finv_sku)
