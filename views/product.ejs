@@ -16,9 +16,16 @@
       <input
         type="number"
         name="quantity"
+        min="0"
         value="<%= inventory.finv_quantity %>"
       />
       <button type="submit">Update</button>
     </form>
+    <div>
+      <a href="/">Home</a>
+    </div>
+    <div>
+      <a href="/delete/<%= inventory.furn_id %>">Delete</a>
+    </div>
   </body>
 </html>

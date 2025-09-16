@@ -37,10 +37,7 @@ CREATE TABLE furniture (
   furn_id INT GENERATED ALWAYS AS IDENTITY,
   furn_name VARCHAR(255) NOT NULL,
   furn_description TEXT,
-  PRIMARY KEY(furn_id),
-  CONSTRAINT fk_collections
-      FOREIGN KEY(collection_id)
-        REFERENCES collections(collection_id)
+  PRIMARY KEY(furn_id)
 );
 ALTER SEQUENCE furniture_furn_id_seq RESTART WITH 500;
 
@@ -112,7 +109,7 @@ VALUES
     ('Family Room'),
     ('Outdoor');
 
-INSERT INTO furniture (furn_name, furn_description, collection_id)
+INSERT INTO furniture (furn_name, furn_description)
 VALUES
     -- Hemingway Collection
     ('Bill Gorton Chair', 'Nec dubitamus multa iter quae et nos invenerat.'),

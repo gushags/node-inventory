@@ -60,7 +60,7 @@ async function getInventoryByCategory(category) {
 
 async function getInventoryById(id) {
   const INVENTORY_BY_ID = `
-  SELECT furn_name, wood_name, ftype_name, collection_name, room_name, finv_id, finv_sku, finv_quantity FROM furniture_inventory
+  SELECT furniture.furn_id, furn_name, wood_name, ftype_name, collection_name, room_name, finv_id, finv_sku, finv_quantity FROM furniture_inventory
       JOIN furniture
           ON furniture.furn_id = furniture_inventory.furn_id
       JOIN wood
