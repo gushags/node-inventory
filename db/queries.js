@@ -4,7 +4,7 @@ const pool = require('./pool');
 
 async function getAllInventory() {
   const SQL_ALL_INVENTORY = `
-    SELECT furn_name, wood_name, ftype_name, collection_name, room_name, finv_sku, finv_quantity FROM furniture_inventory
+    SELECT furn_name, wood_name, ftype_name, collection_name, room_name, finv_id, finv_sku, finv_quantity FROM furniture_inventory
     JOIN furniture
         ON furniture.furn_id = furniture_inventory.furn_id
     JOIN wood
@@ -29,9 +29,8 @@ async function getInventoryByCategory(category) {
       array[index] = null;
     }
   });
-  console.log(catArray);
   const INVENTORY_BY_CATEGORY = `
-  SELECT furn_name, wood_name, ftype_name, collection_name, room_name, finv_sku, finv_quantity FROM furniture_inventory
+  SELECT furn_name, wood_name, ftype_name, collection_name, room_name, finv_id, finv_sku, finv_quantity FROM furniture_inventory
       JOIN furniture
           ON furniture.furn_id = furniture_inventory.furn_id
       JOIN wood

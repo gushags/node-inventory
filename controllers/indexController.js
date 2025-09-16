@@ -12,7 +12,6 @@ async function getAllInventory(req, res) {
 
 async function getInventoryByCategory(req, res) {
   const { category } = req.params;
-  console.log(req.params);
   const inventory = await db.getInventoryByCategory(category);
   res.render('index', {
     title: '1912 Inc. Inventory',

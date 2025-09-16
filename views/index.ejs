@@ -56,7 +56,7 @@
         <input type="radio" name="room" value="Family%20Room" />Family Room
         <input type="radio" name="room" value="Outdoor" />Outdoor
       </form>
-      <button type="submit" onclick="submitCategorySearch()">Submit</button>
+      <button type="submit" onclick="submitCategorySearch()">Filter</button>
     </div>
     <table>
       <tr>
@@ -69,7 +69,7 @@
         <th>Room</th>
       </tr>
       <% inventory.map((item) => { %>
-      <tr>
+      <tr id="<%= item.finv_id %>">
         <td>
           <input
             type="number"
