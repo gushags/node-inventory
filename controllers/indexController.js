@@ -19,4 +19,14 @@ async function getInventoryByCategory(req, res) {
   });
 }
 
-module.exports = { getAllInventory, getInventoryByCategory };
+async function getInventoryById(req, res) {
+  const { id } = req.params;
+  console.log(id);
+  const inventory = await db.getInventoryById(id);
+  res.render('product', {
+    title: 'Product',
+    inventory: inventory,
+  });
+}
+
+module.exports = { getAllInventory, getInventoryByCategory, getInventoryById };

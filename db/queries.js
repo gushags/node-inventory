@@ -29,6 +29,7 @@ async function getInventoryByCategory(category) {
       array[index] = null;
     }
   });
+
   const INVENTORY_BY_CATEGORY = `
   SELECT furn_name, wood_name, ftype_name, collection_name, room_name, finv_id, finv_sku, finv_quantity FROM furniture_inventory
       JOIN furniture
@@ -57,4 +58,23 @@ async function getInventoryByCategory(category) {
   return rows;
 }
 
-module.exports = { getAllInventory, getInventoryByCategory };
+async function getInventoryById(id) {
+  const INVENTORY_BY_ID = `
+  SELECT furn_name, wood_name, ftype_name, collection_name, room_name, finv_id, finv_sku, finv_quantity FROM furniture_inventory
+      JOIN furniture
+          ON furniture.furn_id = furniture_inventory.furn_id
+      JOIN wood
+          ON wood.wood_id = furniture_inventory.wood_id
+      JOIN furniture_types
+          ON furniture_types.ftype_id = furniture_inventory.ftype_id
+      JOIN rooms
+          ON rooms.room_id = furniture_inventory.room_id
+      JOIN collections
+          ON collections.collection_id = furniture_inventory.collection_id
+      WHERE finv_id = $1
+  `;
+  const result = await pool.query(INVENTORY_BY_ID, [id]);
+  return result.rows[0];
+}
+
+module.exports = { getAllInventory, getInventoryByCategory, getInventoryById };
