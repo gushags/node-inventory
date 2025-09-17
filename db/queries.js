@@ -79,6 +79,7 @@ async function getInventoryById(id) {
 
 // TODO: change this to update all fields, not just quantity
 async function updateProductQuantityById(finv_id, quantity) {
+  // add error handling
   const result = await pool.query(
     `UPDATE furniture_inventory
     SET finv_quantity = $1
@@ -89,9 +90,15 @@ async function updateProductQuantityById(finv_id, quantity) {
   return result.rows[0];
 }
 
+async function deleteProductById(furn_id) {
+  // add error handling
+  await pool.query(`DELETE FROM furniture WHERE furn_id = $1`, [furn_id]);
+}
+
 module.exports = {
   getAllInventory,
   getInventoryByCategory,
   getInventoryById,
   updateProductQuantityById,
+  deleteProductById,
 };

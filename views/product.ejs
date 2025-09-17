@@ -24,8 +24,11 @@
     <div>
       <a href="/">Home</a>
     </div>
-    <div>
-      <a href="/delete/<%= inventory.furn_id %>">Delete</a>
-    </div>
+    <form
+      method="POST"
+      action="/delete/<%= inventory.furn_id %>?_method=DELETE"
+    >
+      <button type="submit">Delete</button>
+    </form>
   </body>
 </html>

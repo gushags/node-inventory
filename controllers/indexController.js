@@ -39,9 +39,16 @@ async function updateProdQtyByIdControl(req, res) {
   });
 }
 
+async function deleteProductByIdControl(req, res) {
+  const furn_id = req.params.id;
+  await db.deleteProductById(furn_id);
+  res.redirect('/');
+}
+
 module.exports = {
   getAllInventoryControl,
   getInventoryByCatControl,
   getInventoryByIdControl,
   updateProdQtyByIdControl,
+  deleteProductByIdControl,
 };

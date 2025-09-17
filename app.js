@@ -2,9 +2,13 @@
 const express = require('express');
 const path = require('node:path');
 const app = express();
+const methodOverride = require('method-override');
 
 // Allow data to be read from req.body
 app.use(express.urlencoded({ extended: true }));
+
+// Middleware to allow RESTful delete
+app.use(methodOverride('_method'));
 
 // Get application ready to use ejs templates
 // from 'views' folder
