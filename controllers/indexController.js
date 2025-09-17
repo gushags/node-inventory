@@ -2,7 +2,7 @@
 
 const db = require('../db/queries');
 
-async function getAllInventory(req, res) {
+async function getAllInventoryControl(req, res) {
   const inventory = await db.getAllInventory();
   res.render('index', {
     title: '1912 Inc. Inventory',
@@ -10,7 +10,7 @@ async function getAllInventory(req, res) {
   });
 }
 
-async function getInventoryByCategory(req, res) {
+async function getInventoryByCatControl(req, res) {
   const { category } = req.params;
   const inventory = await db.getInventoryByCategory(category);
   res.render('index', {
@@ -19,7 +19,7 @@ async function getInventoryByCategory(req, res) {
   });
 }
 
-async function getInventoryById(req, res) {
+async function getInventoryByIdControl(req, res) {
   const { id } = req.params;
   const inventory = await db.getInventoryById(id);
   res.render('product', {
@@ -28,7 +28,7 @@ async function getInventoryById(req, res) {
     inventory: inventory,
   });
 }
-async function updateProductQuantityById(req, res) {
+async function updateProdQtyByIdControl(req, res) {
   const { quantity } = req.body;
   const finv_id = req.params.id;
   const inventory = await db.updateProductQuantityById(finv_id, quantity);
@@ -40,8 +40,8 @@ async function updateProductQuantityById(req, res) {
 }
 
 module.exports = {
-  getAllInventory,
-  getInventoryByCategory,
-  getInventoryById,
-  updateProductQuantityById,
+  getAllInventoryControl,
+  getInventoryByCatControl,
+  getInventoryByIdControl,
+  updateProdQtyByIdControl,
 };

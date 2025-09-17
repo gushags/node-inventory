@@ -2,17 +2,17 @@
 
 const { Router } = require('express');
 const {
-  getAllInventory,
-  getInventoryByCategory,
-  getInventoryById,
-  updateProductQuantityById,
+  getAllInventoryControl,
+  getInventoryByCatControl,
+  getInventoryByIdControl,
+  updateProdQtyByIdControl,
 } = require('../controllers/indexController');
 
 const indexRouter = Router();
 
-indexRouter.get('/', getAllInventory);
-indexRouter.get('/:category', getInventoryByCategory);
-indexRouter.get('/product/:id', getInventoryById);
-indexRouter.post('/product/:id', updateProductQuantityById);
+indexRouter.get('/', getAllInventoryControl);
+indexRouter.get('/:category', getInventoryByCatControl);
+indexRouter.get('/product/:id', getInventoryByIdControl);
+indexRouter.post('/product/:id', updateProdQtyByIdControl);
 
 module.exports = indexRouter;
