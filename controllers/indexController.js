@@ -1,6 +1,7 @@
 // controllers/indexController.js
 
 const db = require('../db/queries');
+const catchAsyncErr = require('../utils/catchAsyncErr');
 
 async function getAllInventoryControl(req, res) {
   const inventory = await db.getAllInventory();
@@ -46,9 +47,9 @@ async function deleteProductByIdControl(req, res) {
 }
 
 module.exports = {
-  getAllInventoryControl,
-  getInventoryByCatControl,
-  getInventoryByIdControl,
-  updateProdQtyByIdControl,
-  deleteProductByIdControl,
+  getAllInventoryControl: catchAsyncErr(getAllInventoryControl),
+  getInventoryByCatControl: catchAsyncErr(getInventoryByCatControl),
+  getInventoryByIdControl: catchAsyncErr(getInventoryByIdControl),
+  updateProdQtyByIdControl: catchAsyncErr(updateProdQtyByIdControl),
+  deleteProductByIdControl: catchAsyncErr(deleteProductByIdControl),
 };

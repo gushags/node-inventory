@@ -27,8 +27,11 @@ app.use('/', indexRouter);
 
 // Errorhandling router
 app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(err.statusCode || 500).send(err.message);
+  console.error(err.stack);
+  res.status(500).render('error', {
+    message: 'Something went wrong!',
+    error: process.env.NODE_ENV === 'development' ? err : {},
+  });
 });
 
 const PORT = process.env.PORT || 3000;
