@@ -9,5 +9,29 @@
   </head>
   <body>
     <div>Create a new furniture item here.</div>
+    <p>Collections</p>
+    <ul>
+      <% collections.map((item) => { %>
+      <li data-id="<%= item.collection_id %>"><%= item.collection_name %></li>
+      <% }) %>
+    </ul>
+    <p>Wood</p>
+    <ul>
+      <% wood.map((item) => { %>
+      <li data-id="<%= item.wood_id %>"><%= item.wood_name %></li>
+      <% }) %>
+    </ul>
+    <p>Furniture Types</p>
+    <ul>
+      <% ftypes.map((item) => { %>
+      <li data-id="<%= item.ftype_id %>"><%= item.ftype_name %></li>
+      <% }) %>
+    </ul>
+    <p>Rooms</p>
+    <ul>
+      <% rooms.map((item) => { %>
+      <li data-id="<%= item.room_id %>"><%= item.room_name %></li>
+      <% }) %>
+    </ul>
   </body>
 </html>

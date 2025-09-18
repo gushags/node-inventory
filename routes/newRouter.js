@@ -1,11 +1,14 @@
 // routes/newRouter.js
 
 const { Router } = require('express');
+const {
+  createNewProductControl,
+  getNewProductControl,
+} = require('../controllers/newController');
 
 const newRouter = Router();
 
-newRouter.get('/', (req, res) => {
-  res.render('new');
-});
+newRouter.get('/', getNewProductControl);
+newRouter.post('/', createNewProductControl);
 
 module.exports = newRouter;

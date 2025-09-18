@@ -91,8 +91,27 @@ async function updateProductQuantityById(finv_id, quantity) {
 }
 
 async function deleteProductById(furn_id) {
-  // add error handling
   await pool.query(`DELETE FROM furniture WHERE furn_id = $1`, [furn_id]);
+}
+
+async function getAllWood() {
+  const { rows } = await pool.query(`SELECT * FROM wood;`);
+  return rows;
+}
+
+async function getAllTypes() {
+  const { rows } = await pool.query(`SELECT * FROM furniture_types;`);
+  return rows;
+}
+
+async function getAllCollections() {
+  const { rows } = await pool.query(`SELECT * FROM collections;`);
+  return rows;
+}
+
+async function getAllRooms() {
+  const { rows } = await pool.query(`SELECT * FROM rooms;`);
+  return rows;
 }
 
 module.exports = {
@@ -101,4 +120,8 @@ module.exports = {
   getInventoryById,
   updateProductQuantityById,
   deleteProductById,
+  getAllWood,
+  getAllTypes,
+  getAllCollections,
+  getAllRooms,
 };
