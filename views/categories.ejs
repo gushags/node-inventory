@@ -7,6 +7,83 @@
     <title><%= title %></title>
   </head>
   <body>
-    Categories!!
+    <div class="categories">
+      <div class="collections">
+        Collections <% collections.map((item) => { %>
+        <form
+          name="collections"
+          method="POST"
+          action="/categories/<%= item.collection_id %>"
+        >
+          <input
+            type="text"
+            name="collection"
+            value="<%= item.collection_name %>"
+          />
+          <button type="submit">Update</button>
+        </form>
+        <form
+          method="POST"
+          action="/categories/delete/<%= item.collection_id %>?_method=DELETE"
+        >
+          <button type="submit">Delete</button>
+        </form>
+        <% }) %>
+      </div>
+      <div class="woods">
+        Wood <% wood.map((item) => { %>
+        <form
+          name="woods"
+          method="POST"
+          action="/categories/<%= item.wood_id %>"
+        >
+          <input type="text" name="wood" value="<%= item.wood_name %>" />
+          <button type="submit">Update</button>
+        </form>
+        <form
+          method="POST"
+          action="/categories/delete/<%= item.wood_id %>?_method=DELETE"
+        >
+          <button type="submit">Delete</button>
+        </form>
+        <% }) %>
+      </div>
+      <div class="ftypes">
+        Furniture Types <% ftypes.map((item) => { %>
+        <form
+          name="ftype"
+          method="POST"
+          action="/categories/<%= item.ftype_id %>"
+        >
+          <input type="text" name="ftype" value="<%= item.ftype_name %>" />
+          <button type="submit">Update</button>
+        </form>
+        <form
+          method="POST"
+          action="/categories/delete/<%= item.ftype_id %>?_method=DELETE"
+        >
+          <button type="submit">Delete</button>
+        </form>
+        <% }) %>
+      </div>
+      <div class="rooms">
+        Rooms <% rooms.map((item) => { %>
+        <form
+          name="rooms"
+          method="POST"
+          action="/categories/<%= item.room_id %>"
+        >
+          <input type="text" name="room" value="<%= item.room_name %>" />
+          <button type="submit">Update</button>
+        </form>
+        <form
+          method="POST"
+          action="/categories/delete/<%= item.room_id %>?_method=DELETE"
+        >
+          <button type="submit">Delete</button>
+        </form>
+        <% }) %>
+      </div>
+    </div>
   </body>
 </html>

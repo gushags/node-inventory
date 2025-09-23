@@ -24,32 +24,24 @@
       </form>
       <form name="woods">
         Wood
-        <input type="radio" name="wood" value="0" checked />All
-        <input type="radio" name="wood" value="Birch" />Birch
-        <input type="radio" name="wood" value="Cherry" />Cherry
-        <input type="radio" name="wood" value="Oak" />Oak
-        <input type="radio" name="wood" value="Walnut" />Walnut
+        <input type="radio" name="wood" value="0" checked />All <%
+        wood.map((item) => { %>
+        <input type="radio" name="wood" value="<%= item.wood_name %>" />
+        <%= item.wood_name %> <% }) %>
       </form>
       <form name="ftypes">
         Furniture type
-        <input type="radio" name="ftype" value="0" checked />All
-        <input type="radio" name="ftype" value="Bed" />Bed
-        <input type="radio" name="ftype" value="Bench" />Bench
-        <input type="radio" name="ftype" value="Chair" />Chair
-        <input type="radio" name="ftype" value="Deckchair" />Deckchair
-        <input type="radio" name="ftype" value="End%Table" />End Table
-        <input type="radio" name="ftype" value="Headboard" />Headboard
-        <input type="radio" name="ftype" value="Hutch" />Hutch
-        <input type="radio" name="ftype" value="Kitchen%20Table" />Kitchen Table
-        <input type="radio" name="ftype" value="Side%20Table" />Side Table
+        <input type="radio" name="ftype" value="0" checked />All <%
+        ftypes.map((item) => { %>
+        <input type="radio" name="ftype" value="<%= item.ftype_name %>" />
+        <%= item.ftype_name %> <% }) %>
       </form>
       <form name="rooms">
         Rooms
-        <input type="radio" name="room" value="0" checked />All
-        <input type="radio" name="room" value="Bedroom" />Bedroom
-        <input type="radio" name="room" value="Dining%20Room" />Dining Room
-        <input type="radio" name="room" value="Family%20Room" />Family Room
-        <input type="radio" name="room" value="Outdoor" />Outdoor
+        <input type="radio" name="room" value="0" checked />All <%
+        rooms.map((item) => { %>
+        <input type="radio" name="room" value="<%= item.room_name %>" />
+        <%= item.room_name %> <% }) %>
       </form>
       <!-- TODO change this to be a form submit instead of a function -->
       <button type="submit" onclick="submitCategorySearch()">Filter</button>

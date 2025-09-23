@@ -2,10 +2,12 @@
 
 const { Router } = require('express');
 
+const {
+  getAllCategoriesControl,
+} = require('../controllers/categoriesController');
+
 const categoryRouter = Router();
 
-categoryRouter.get('/', (req, res) => {
-  res.render('categories', { title: '1912 Inc. Inventory: Categories' });
-});
+categoryRouter.get('/', getAllCategoriesControl);
 
 module.exports = categoryRouter;
