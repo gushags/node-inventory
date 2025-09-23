@@ -5,8 +5,17 @@ const catchAsyncErr = require('../utils/catchAsyncErr');
 
 async function getAllInventoryControl(req, res) {
   const inventory = await db.getAllInventory();
+  const collections = await db.getAllCollections();
+  const wood = await db.getAllWood();
+  const ftypes = await db.getAllTypes();
+  const rooms = await db.getAllRooms();
+
   res.render('index', {
     title: '1912 Inc. Inventory',
+    collections: collections,
+    wood: wood,
+    ftypes: ftypes,
+    rooms: rooms,
     inventory: inventory,
   });
 }
@@ -14,8 +23,16 @@ async function getAllInventoryControl(req, res) {
 async function getInventoryByCatControl(req, res) {
   const { category } = req.params;
   const inventory = await db.getInventoryByCategory(category);
+  const collections = await db.getAllCollections();
+  const wood = await db.getAllWood();
+  const ftypes = await db.getAllTypes();
+  const rooms = await db.getAllRooms();
   res.render('index', {
     title: '1912 Inc. Inventory',
+    collections: collections,
+    wood: wood,
+    ftypes: ftypes,
+    rooms: rooms,
     inventory: inventory,
   });
 }

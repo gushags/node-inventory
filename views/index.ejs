@@ -14,18 +14,13 @@
     <div class="categories">
       <form name="collections">
         Collection
-        <input type="radio" name="collection" value="0" checked />All
-        <input type="radio" name="collection" value="Ezra%20Collection" />Ezra
+        <input type="radio" name="collection" value="0" checked />All <%
+        collections.map((item) => { %>
         <input
           type="radio"
           name="collection"
-          value="Fitzgerald%20Collection"
-        />Fitzgerald
-        <input
-          type="radio"
-          name="collection"
-          value="Hemingway%20Collection"
-        />Hemingway
+          value="<%= item.collection_name %>"
+        /><%= item.collection_name %> <% }) %>
       </form>
       <form name="woods">
         Wood
