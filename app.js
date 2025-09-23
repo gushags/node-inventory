@@ -22,9 +22,11 @@ app.use(express.static(assetsPath));
 
 const indexRouter = require('./routes/indexRouter');
 const newRouter = require('./routes/newRouter');
+const categoryRouter = require('./routes/categoryRouter');
 
 // Routers
 app.use('/new', newRouter);
+app.use('/categories', categoryRouter);
 app.use('/', indexRouter);
 
 // Errorhandling router
