@@ -99,6 +99,20 @@ async function deleteCollectionById(collection_id) {
   ]);
 }
 
+async function deleteWoodById(wood_id) {
+  await pool.query(`DELETE FROM wood WHERE wood_id = $1`, [wood_id]);
+}
+
+async function deleteFtypeById(ftype_id) {
+  await pool.query(`DELETE FROM furniture_types WHERE ftype_id = $1`, [
+    ftype_id,
+  ]);
+}
+
+async function deleteRoomById(room_id) {
+  await pool.query(`DELETE FROM rooms WHERE room_id = $1`, [room_id]);
+}
+
 async function getAllWood() {
   const { rows } = await pool.query(`SELECT * FROM wood;`);
   return rows;
@@ -161,6 +175,9 @@ module.exports = {
   updateProductQuantityById,
   deleteProductById,
   deleteCollectionById,
+  deleteWoodById,
+  deleteFtypeById,
+  deleteRoomById,
   getAllWood,
   getAllTypes,
   getAllCollections,

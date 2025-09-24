@@ -58,6 +58,24 @@ async function deleteCollectionByIdControl(req, res) {
   await renderCategories(res, 'A collection has been deleted.');
 }
 
+async function deleteWoodByIdControl(req, res) {
+  const id = req.params.wood_id;
+  await db.deleteWoodById(id);
+  await renderCategories(res, 'A wood has been deleted.');
+}
+
+async function deleteFtypeByIdControl(req, res) {
+  const id = req.params.ftype_id;
+  await db.deleteFtypeById(id);
+  await renderCategories(res, 'A furniture type has been deleted.');
+}
+
+async function deleteRoomByIdControl(req, res) {
+  const id = req.params.room_id;
+  await db.deleteRoomById(id);
+  await renderCategories(res, 'A room category has been deleted.');
+}
+
 module.exports = {
   getAllCategoriesControl: catchAsyncErr(getAllCategoriesControl),
   updateCollectionControl: catchAsyncErr(updateCollectionControl),
@@ -65,4 +83,7 @@ module.exports = {
   updateFtypeControl: catchAsyncErr(updateFtypeControl),
   updateRoomControl: catchAsyncErr(updateRoomControl),
   deleteCollectionByIdControl: catchAsyncErr(deleteCollectionByIdControl),
+  deleteWoodByIdControl: catchAsyncErr(deleteWoodByIdControl),
+  deleteFtypeByIdControl: catchAsyncErr(deleteFtypeByIdControl),
+  deleteRoomByIdControl: catchAsyncErr(deleteRoomByIdControl),
 };

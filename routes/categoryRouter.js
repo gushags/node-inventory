@@ -9,8 +9,10 @@ const {
   updateFtypeControl,
   updateRoomControl,
   deleteCollectionByIdControl,
+  deleteWoodByIdControl,
+  deleteFtypeByIdControl,
+  deleteRoomByIdControl,
 } = require('../controllers/categoriesController');
-const { deleteCollectionById } = require('../db/queries');
 
 const categoryRouter = Router();
 
@@ -23,5 +25,8 @@ categoryRouter.delete(
   '/delete/collection/:collection_id',
   deleteCollectionByIdControl
 );
+categoryRouter.delete('/delete/wood/:wood_id', deleteWoodByIdControl);
+categoryRouter.delete('/delete/ftype/:ftype_id', deleteFtypeByIdControl);
+categoryRouter.delete('/delete/room/:room_id', deleteRoomByIdControl);
 
 module.exports = categoryRouter;
