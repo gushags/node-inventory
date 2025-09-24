@@ -89,6 +89,38 @@ async function updateProductQuantityById(finv_id, quantity) {
   return result.rows[0];
 }
 
+async function createNewCollection(name) {
+  await pool.query(
+    `INSERT INTO collections (collection_name)
+    VALUES ($1)`,
+    [name]
+  );
+}
+
+async function createNewWood(name) {
+  await pool.query(
+    `INSERT INTO wood (wood_name)
+    VALUES ($1)`,
+    [name]
+  );
+}
+
+async function createNewFtype(name) {
+  await pool.query(
+    `INSERT INTO furniture_types (ftype_name)
+    VALUES ($1)`,
+    [name]
+  );
+}
+
+async function createNewRoom(name) {
+  await pool.query(
+    `INSERT INTO rooms (room_name)
+    VALUES ($1)`,
+    [name]
+  );
+}
+
 async function deleteProductById(furn_id) {
   await pool.query(`DELETE FROM furniture WHERE furn_id = $1`, [furn_id]);
 }
@@ -173,6 +205,10 @@ module.exports = {
   getInventoryByCategory,
   getInventoryById,
   updateProductQuantityById,
+  createNewCollection,
+  createNewWood,
+  createNewFtype,
+  createNewRoom,
   deleteProductById,
   deleteCollectionById,
   deleteWoodById,

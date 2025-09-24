@@ -95,7 +95,11 @@
     </div>
     <dialog id="collection-modal">
       <a href="#" id="collection-close">Close</a>
-      <form name="new-collection" method="POST" action="">
+      <form
+        name="new-collection"
+        method="POST"
+        action="/categories/new/collection"
+      >
         <h2>Add a Collection</h2>
         <label for="new-collection"
           >Name
@@ -106,18 +110,18 @@
     </dialog>
     <dialog id="wood-modal">
       <a href="#" id="wood-close">Close</a>
-      <form name="new-wood" method="POST" action="">
+      <form name="new-wood" method="POST" action="/categories/new/wood">
         <h2>Add a Wood Species</h2>
         <label for="new-wood"
           >Name
-          <input type="text" name="collection" id="new-wood" />
+          <input type="text" name="wood" id="new-wood" />
         </label>
         <button type="submit">Submit</button>
       </form>
     </dialog>
     <dialog id="ftype-modal">
       <a href="#" id="ftype-close">Close</a>
-      <form name="new-ftype" method="POST" action="">
+      <form name="new-ftype" method="POST" action="/categories/new/ftype">
         <h2>Add a Furniture Type</h2>
         <label for="new-ftype"
           >Name
@@ -128,15 +132,15 @@
     </dialog>
     <dialog id="room-modal">
       <a href="#" id="room-close">Close</a>
-      <form name="new-room" method="POST" action="">
+      <form name="new-room" method="POST" action="/categories/new/room">
         <h2>Add a Room</h2>
         <label for="new-room"
           >Name
-          <input type="text" name="ftype" id="new-room" />
+          <input type="text" name="room" id="new-room" />
         </label>
         <button type="submit">Submit</button>
       </form>
     </dialog>
-    <script src="../categories.js"></script>
+    <script src="/categories.js"></script>
   </body>
 </html>

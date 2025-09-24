@@ -52,6 +52,31 @@ async function updateRoomControl(req, res) {
   await renderCategories(res, 'The Room category has been updated.');
 }
 
+async function createNewCollectionControl(req, res) {
+  const name = req.body.collection;
+  console.log(name);
+  await db.createNewCollection(name);
+  await renderCategories(res, 'The Collection category has been updated.');
+}
+
+async function createNewWoodControl(req, res) {
+  const name = req.body.wood;
+  await db.createNewWood(name);
+  await renderCategories(res, 'The Wood category has been updated.');
+}
+
+async function createNewFtypeControl(req, res) {
+  const name = req.body.ftype;
+  await db.createNewFtype(name);
+  await renderCategories(res, 'The Furniture Type category has been updated.');
+}
+
+async function createNewRoomControl(req, res) {
+  const name = req.body.room;
+  await db.createNewRoom(name);
+  await renderCategories(res, 'The Room category has been updated.');
+}
+
 async function deleteCollectionByIdControl(req, res) {
   const id = req.params.collection_id;
   await db.deleteCollectionById(id);
@@ -82,6 +107,10 @@ module.exports = {
   updateWoodControl: catchAsyncErr(updateWoodControl),
   updateFtypeControl: catchAsyncErr(updateFtypeControl),
   updateRoomControl: catchAsyncErr(updateRoomControl),
+  createNewCollectionControl: catchAsyncErr(createNewCollectionControl),
+  createNewWoodControl: catchAsyncErr(createNewWoodControl),
+  createNewFtypeControl: catchAsyncErr(createNewFtypeControl),
+  createNewRoomControl: catchAsyncErr(createNewRoomControl),
   deleteCollectionByIdControl: catchAsyncErr(deleteCollectionByIdControl),
   deleteWoodByIdControl: catchAsyncErr(deleteWoodByIdControl),
   deleteFtypeByIdControl: catchAsyncErr(deleteFtypeByIdControl),
