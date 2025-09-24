@@ -89,10 +89,29 @@ async function updateRoomControl(req, res) {
     rooms: rooms,
   });
 }
+
+async function deleteCollectionByIdControl(req, res) {
+  const id = req.params.collection_id;
+  await db.deleteCollectionById(id);
+  const collections = await db.getAllCollections();
+  const wood = await db.getAllWood();
+  const ftypes = await db.getAllTypes();
+  const rooms = await db.getAllRooms();
+  res.render('categories', {
+    title: '1912 Inc. Inventory: Categories',
+    updated: 'A collection has been deleted.',
+    collections: collections,
+    wood: wood,
+    ftypes: ftypes,
+    rooms: rooms,
+  });
+}
+
 module.exports = {
   getAllCategoriesControl: catchAsyncErr(getAllCategoriesControl),
   updateCollectionControl: catchAsyncErr(updateCollectionControl),
   updateWoodControl: catchAsyncErr(updateWoodControl),
   updateFtypeControl: catchAsyncErr(updateFtypeControl),
   updateRoomControl: catchAsyncErr(updateRoomControl),
+  deleteCollectionByIdControl: catchAsyncErr(deleteCollectionByIdControl),
 };

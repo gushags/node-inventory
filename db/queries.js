@@ -93,6 +93,12 @@ async function deleteProductById(furn_id) {
   await pool.query(`DELETE FROM furniture WHERE furn_id = $1`, [furn_id]);
 }
 
+async function deleteCollectionById(collection_id) {
+  await pool.query(`DELETE FROM collections WHERE collection_id = $1`, [
+    collection_id,
+  ]);
+}
+
 async function getAllWood() {
   const { rows } = await pool.query(`SELECT * FROM wood;`);
   return rows;
@@ -154,6 +160,7 @@ module.exports = {
   getInventoryById,
   updateProductQuantityById,
   deleteProductById,
+  deleteCollectionById,
   getAllWood,
   getAllTypes,
   getAllCollections,
