@@ -122,6 +122,32 @@ async function updateCollection(name, id) {
   console.log('Updated collection id# ', id);
 }
 
+async function updateWood(name, id) {
+  await pool.query(
+    `UPDATE wood SET wood_name = $1
+  WHERE wood_id = $2`,
+    [name, id]
+  );
+  console.log('Updated wood id# ', id);
+}
+
+async function updateFtype(name, id) {
+  await pool.query(
+    `UPDATE furniture_types SET ftype_name = $1
+  WHERE ftype_id = $2`,
+    [name, id]
+  );
+  console.log('Updated ftype id# ', id);
+}
+
+async function updateRoom(name, id) {
+  await pool.query(
+    `UPDATE rooms SET room_name = $1
+  WHERE room_id = $2`,
+    [name, id]
+  );
+  console.log('Updated room id# ', id);
+}
 module.exports = {
   getAllInventory,
   getInventoryByCategory,
@@ -133,4 +159,7 @@ module.exports = {
   getAllCollections,
   getAllRooms,
   updateCollection,
+  updateWood,
+  updateFtype,
+  updateRoom,
 };

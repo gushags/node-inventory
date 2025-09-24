@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/styles.css" />
     <title><%= title %></title>
   </head>
+  <%- include('partials/nav.ejs') %>
   <body>
     <% if (updated) { %>
     <div><%= updated %></div>
@@ -38,7 +39,7 @@
         <form
           name="woods"
           method="POST"
-          action="/categories/<%= item.wood_id %>"
+          action="/categories/wood/<%= item.wood_id %>"
         >
           <input type="text" name="wood" value="<%= item.wood_name %>" />
           <button type="submit">Update</button>
@@ -56,7 +57,7 @@
         <form
           name="ftype"
           method="POST"
-          action="/categories/<%= item.ftype_id %>"
+          action="/categories/ftype/<%= item.ftype_id %>"
         >
           <input type="text" name="ftype" value="<%= item.ftype_name %>" />
           <button type="submit">Update</button>
@@ -74,7 +75,7 @@
         <form
           name="rooms"
           method="POST"
-          action="/categories/<%= item.room_id %>"
+          action="/categories/room/<%= item.room_id %>"
         >
           <input type="text" name="room" value="<%= item.room_name %>" />
           <button type="submit">Update</button>
