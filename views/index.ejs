@@ -61,11 +61,11 @@
       <tr id="<%= item.finv_id %>">
         <td><%= item.finv_quantity %></td>
         <td><%= item.furn_name %></td>
-        <td><%= item.wood_name %></td>
+        <td><%= item.wood_name || '—' %></td>
         <td><%= item.finv_sku %></td>
-        <td><%= item.ftype_name %></td>
-        <td><%= item.collection_name %></td>
-        <td><%= item.room_name %></td>
+        <td><%= item.ftype_name || '—' %></td>
+        <td><%= item.collection_name || '—' %></td>
+        <td><%= item.room_name || '—' %></td>
         <td>
           <a href="/product/<%= item.finv_id %>">Edit</a>
         </td>

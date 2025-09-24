@@ -65,7 +65,8 @@ CREATE TABLE furniture_inventory (
             ON DELETE CASCADE,
   CONSTRAINT fk_wood
       FOREIGN KEY(wood_id)
-        REFERENCES wood(wood_id),
+        REFERENCES wood(wood_id)
+            ON DELETE SET NULL,
   CONSTRAINT fk_collections
       FOREIGN KEY(collection_id)
         REFERENCES collections(collection_id)
