@@ -12,6 +12,9 @@ const {
 const indexRouter = Router();
 
 indexRouter.get('/', getAllInventoryControl);
+indexRouter.get('/0&0&0&0', (req, res) => {
+  res.redirect('/');
+});
 indexRouter.get('/:category', getInventoryByCatControl);
 indexRouter.get('/product/:id', getInventoryByIdControl);
 indexRouter.post('/product/:id', updateProdQtyByIdControl);
