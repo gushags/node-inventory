@@ -39,6 +39,7 @@ async function getInventoryByCatControl(req, res) {
 
 async function getInventoryByIdControl(req, res) {
   const { id } = req.params;
+  console.log('id: ', id);
   const inventory = await db.getInventoryById(id);
   res.render('product', {
     title: 'Product',
@@ -46,6 +47,7 @@ async function getInventoryByIdControl(req, res) {
     inventory: inventory,
   });
 }
+
 async function updateProdQtyByIdControl(req, res) {
   const { quantity } = req.body;
   const finv_id = req.params.id;

@@ -32,15 +32,15 @@ async function getInventoryByCategory(category) {
 
   const INVENTORY_BY_CATEGORY = `
   SELECT furn_name, wood_name, ftype_name, collection_name, room_name, finv_id, finv_sku, finv_quantity FROM furniture_inventory
-      JOIN furniture
+      LEFT JOIN furniture
           ON furniture.furn_id = furniture_inventory.furn_id
-      JOIN wood
+      LEFT JOIN wood
           ON wood.wood_id = furniture_inventory.wood_id
-      JOIN furniture_types
+      LEFT JOIN furniture_types
           ON furniture_types.ftype_id = furniture_inventory.ftype_id
-      JOIN rooms
+      LEFT JOIN rooms
           ON rooms.room_id = furniture_inventory.room_id
-      JOIN collections
+      LEFT JOIN collections
           ON collections.collection_id = furniture_inventory.collection_id
       WHERE
           ($1::text IS NULL OR collection_name = $1::text)
@@ -61,15 +61,15 @@ async function getInventoryByCategory(category) {
 async function getInventoryById(id) {
   const INVENTORY_BY_ID = `
   SELECT furniture.furn_id, furn_name, wood_name, ftype_name, collection_name, room_name, finv_id, finv_sku, finv_quantity FROM furniture_inventory
-      JOIN furniture
+      LEFT JOIN furniture
           ON furniture.furn_id = furniture_inventory.furn_id
-      JOIN wood
+      LEFT JOIN wood
           ON wood.wood_id = furniture_inventory.wood_id
-      JOIN furniture_types
+      LEFT JOIN furniture_types
           ON furniture_types.ftype_id = furniture_inventory.ftype_id
-      JOIN rooms
+      LEFT JOIN rooms
           ON rooms.room_id = furniture_inventory.room_id
-      JOIN collections
+      LEFT JOIN collections
           ON collections.collection_id = furniture_inventory.collection_id
       WHERE finv_id = $1
   `;

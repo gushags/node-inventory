@@ -33,6 +33,7 @@
           <button type="submit">Delete</button>
         </form>
         <% }) %>
+        <button id="collection-open">Add New Collection</button>
       </div>
       <div class="woods">
         Wood <% wood.map((item) => { %>
@@ -51,6 +52,7 @@
           <button type="submit">Delete</button>
         </form>
         <% }) %>
+        <button id="wood-open">Add New Wood</button>
       </div>
       <div class="ftypes">
         Furniture Types <% ftypes.map((item) => { %>
@@ -69,6 +71,7 @@
           <button type="submit">Delete</button>
         </form>
         <% }) %>
+        <button id="ftype-open">Add New Furniture Type</button>
       </div>
       <div class="rooms">
         Rooms <% rooms.map((item) => { %>
@@ -87,7 +90,53 @@
           <button type="submit">Delete</button>
         </form>
         <% }) %>
+        <button id="room-open">Add New Room</button>
       </div>
     </div>
+    <dialog id="collection-modal">
+      <a href="#" id="collection-close">Close</a>
+      <form name="new-collection" method="POST" action="">
+        <h2>Add a Collection</h2>
+        <label for="new-collection"
+          >Name
+          <input type="text" name="collection" id="new-collection" />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+    </dialog>
+    <dialog id="wood-modal">
+      <a href="#" id="wood-close">Close</a>
+      <form name="new-wood" method="POST" action="">
+        <h2>Add a Wood Species</h2>
+        <label for="new-wood"
+          >Name
+          <input type="text" name="collection" id="new-wood" />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+    </dialog>
+    <dialog id="ftype-modal">
+      <a href="#" id="ftype-close">Close</a>
+      <form name="new-ftype" method="POST" action="">
+        <h2>Add a Furniture Type</h2>
+        <label for="new-ftype"
+          >Name
+          <input type="text" name="ftype" id="new-ftype" />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+    </dialog>
+    <dialog id="room-modal">
+      <a href="#" id="room-close">Close</a>
+      <form name="new-room" method="POST" action="">
+        <h2>Add a Room</h2>
+        <label for="new-room"
+          >Name
+          <input type="text" name="ftype" id="new-room" />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+    </dialog>
+    <script src="../categories.js"></script>
   </body>
 </html>
