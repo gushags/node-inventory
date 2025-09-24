@@ -313,3 +313,6 @@ UPDATE furniture_inventory
     SET finv_quantity = $1
     WHERE finv_sku = $2
 
+-- Change collection name
+UPDATE collections SET collection_name = 'New Name'
+  WHERE collection_id = 202;

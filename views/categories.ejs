@@ -7,13 +7,16 @@
     <title><%= title %></title>
   </head>
   <body>
+    <% if (updated) { %>
+    <div><%= updated %></div>
+    <% } %>
     <div class="categories">
       <div class="collections">
         Collections <% collections.map((item) => { %>
         <form
           name="collections"
           method="POST"
-          action="/categories/<%= item.collection_id %>"
+          action="/categories/collection/<%= item.collection_id %>"
         >
           <input
             type="text"
