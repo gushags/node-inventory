@@ -18,19 +18,11 @@ async function getNewProductControl(req, res) {
 }
 
 async function createNewProductControl(req, res) {
-  const { name, description, quantity, wood, ftype, room, collection, sku } =
+  const { name, description, quantity, wood, ftype, room, collection } =
     req.body;
   const result = await db.createNewFurniture(name, description);
   const furn_id = result.furn_id;
-  await db.createNewProduct(
-    furn_id,
-    quantity,
-    wood,
-    ftype,
-    room,
-    collection,
-    sku
-  );
+  await db.createNewProduct(furn_id, quantity, wood, ftype, room, collection);
   res.redirect('/');
 }
 

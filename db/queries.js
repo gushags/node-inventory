@@ -113,15 +113,14 @@ async function createNewProduct(
   wood,
   ftype,
   room,
-  collection,
-  sku
+  collection
 ) {
   await pool.query(
     `
     INSERT INTO furniture_inventory (furn_id, finv_quantity, wood_id, ftype_id, room_id, collection_id, finv_sku )
     VALUES ($1, $2, $3, $4, $5, $6, $7)
     `,
-    [furn_id, quantity, wood, ftype, room, collection, sku]
+    [furn_id, quantity, wood, ftype, room, collection]
   );
 }
 
