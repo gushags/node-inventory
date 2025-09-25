@@ -5,34 +5,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <title><%= title %></title>
   </head>
   <%- include('partials/nav.ejs') %>
   <body>
-    <div>Create a new furniture item here.</div>
-    <p>Collections</p>
-    <ul>
-      <% collections.map((item) => { %>
-      <li data-id="<%= item.collection_id %>"><%= item.collection_name %></li>
-      <% }) %>
-    </ul>
-    <p>Wood</p>
-    <ul>
-      <% wood.map((item) => { %>
-      <li data-id="<%= item.wood_id %>"><%= item.wood_name %></li>
-      <% }) %>
-    </ul>
-    <p>Furniture Types</p>
-    <ul>
-      <% ftypes.map((item) => { %>
-      <li data-id="<%= item.ftype_id %>"><%= item.ftype_name %></li>
-      <% }) %>
-    </ul>
-    <p>Rooms</p>
-    <ul>
-      <% rooms.map((item) => { %>
-      <li data-id="<%= item.room_id %>"><%= item.room_name %></li>
-      <% }) %>
-    </ul>
+    <h1>Create a new furniture item.</h1>
+    <form action="/new" method="POST">
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Enter furniture name"
+      />
+      <label for="description">Description:</label>
+      <input
+        type="textarea"
+        name="description"
+        id="description"
+        placeholder="Describe the new furniture."
+      />
+      <label for="quantity">Quantity:</label>
+      <input type="number" name="quantity" id="quantity" min="0" />
+      <label for="wood">Furniture Type:</label>
+      <select id="wood" name="wood">
+        <option disabled selected value>-- select an option --</option>
+        <% wood.map((item) => { %>
+        <option value="<%= item.wood_id %>"><%= item.wood_name %></option>
+        <% }) %>
+      </select>
+      <label for="ftype">Furniture Type:</label>
+      <select id="ftype" name="ftype">
+        <option disabled selected value>-- select an option --</option>
+        <% ftypes.map((item) => { %>
+        <option value="<%= item.ftype_id %>"><%= item.ftype_name %></option>
+        <% }) %>
+      </select>
+      <label for="room">Room:</label>
+      <select id="room" name="room">
+        <option disabled selected value>-- select an option --</option>
+        <% rooms.map((item) => { %>
+        <option value="<%= item.room_id %>"><%= item.room_name %></option>
+        <% }) %>
+      </select>
+      <label for="collection">Collection:</label>
+      <select id="collection" name="collection">
+        <option disabled selected value>-- select an option --</option>
+        <% collections.map((item) => { %>
+        <option value="<%= item.collection_id %>">
+          <%= item.collection_name %>
+        </option>
+        <% }) %>
+      </select>
+      <label for="sku">Sku:</label>
+      <input
+        type="text"
+        name="sku"
+        id="sku"
+        placeholder="e.g. BGC-Cherry (for Bill Gorton Chair, Cherry)"
+      />
+      <button type="submit">Submit</button>
+    </form>
   </body>
 </html>

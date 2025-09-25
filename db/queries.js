@@ -89,6 +89,32 @@ async function updateProductQuantityById(finv_id, quantity) {
   return result.rows[0];
 }
 
+async function createNewFurniture(name, description) {
+  const result = await pool.query(
+    `
+    INSERT INTO furniture (furn_name, furn_description)
+    VALUES ($1, $2)
+    `,
+    [name, description]
+  );
+  return result.rows[0];
+}
+
+async function createNewProduct(
+  name,
+  description,
+  quantity,
+  wood,
+  ftype,
+  room,
+  collection,
+  sku
+) {
+  await pool.query(`
+
+    `);
+}
+
 async function createNewCollection(name) {
   await pool.query(
     `INSERT INTO collections (collection_name)
@@ -209,6 +235,7 @@ module.exports = {
   createNewWood,
   createNewFtype,
   createNewRoom,
+  createNewFurniture,
   deleteProductById,
   deleteCollectionById,
   deleteWoodById,

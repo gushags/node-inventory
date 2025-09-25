@@ -9,6 +9,7 @@ async function getNewProductControl(req, res) {
   const collections = await db.getAllCollections();
   const rooms = await db.getAllRooms();
   res.render('new', {
+    title: 'New Product',
     wood: wood,
     ftypes: ftypes,
     collections: collections,
@@ -17,7 +18,10 @@ async function getNewProductControl(req, res) {
 }
 
 async function createNewProductControl(req, res) {
-  console.log('Does nothing yet.');
+  const { name, description, quantity, wood, ftype, room, collection, sku } =
+    req.body;
+  const result = await db.createNewFurniture(name, description);
+  res.redirect('/');
 }
 
 module.exports = {
