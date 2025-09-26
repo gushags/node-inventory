@@ -39,18 +39,32 @@ async function getInventoryByCatControl(req, res) {
 
 async function getInventoryByIdControl(req, res) {
   const { id } = req.params;
-  console.log('id: ', id);
   const inventory = await db.getInventoryById(id);
-  console.log(inventory);
   res.render('product', {
     title: 'Product',
     alert: null,
     inventory: inventory,
   });
 }
-async function getProductByIdControl(req, res) {}
-
-async function updateProdByIdControl(req, res) {}
+async function getProductByIdControl(req, res) {
+  const { id } = req.params;
+  const inventory = await db.getProductById(id);
+  console.log(inventory);
+  const [collections, wood, ftypes, rooms] = await Promise.all([
+    db.getAllCollections(),
+    db.getAllWood(),
+    db.getAllTypes(),
+    db.getAllRooms(),
+  ]);
+  res.render('update', {
+    title: 'Update Product',
+    inventory: inventory,
+    collections: collections,
+    wood: wood,
+    ftypes: ftypes,
+    rooms: rooms,
+  });
+}
 
 async function updateProdByIdControl(req, res) {
   // fix this to update everything

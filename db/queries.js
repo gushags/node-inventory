@@ -77,6 +77,25 @@ async function getInventoryById(id) {
   return result.rows[0];
 }
 
+async function getProductById(id) {
+  const PRODUCT_BY_ID = `
+  SELECT furniture.furn_id, furn_name, wood_name, ftype_name, collection_name, room_name, finv_id, finv_sku, finv_quantity FROM furniture_inventory
+      LEFT JOIN furniture
+          ON furniture.furn_id = furniture_inventory.furn_id
+      LEFT JOIN wood
+          ON wood.wood_id = furniture_inventory.wood_id
+      LEFT JOIN furniture_types
+          ON furniture_types.ftype_id = furniture_inventory.ftype_id
+      LEFT JOIN rooms
+          ON rooms.room_id = furniture_inventory.room_id
+      LEFT JOIN collections
+          ON collections.collection_id = furniture_inventory.collection_id
+      WHERE furniture.furn_id = $1
+  `;
+  const result = await pool.query(PRODUCT_BY_ID, [id]);
+  return result.rows[0];
+}
+
 // TODO: change this to update all fields, not just quantity
 async function updateProductQuantityById(finv_id, quantity) {
   const result = await pool.query(
@@ -239,6 +258,7 @@ module.exports = {
   getAllInventory,
   getInventoryByCategory,
   getInventoryById,
+  getProductById,
   updateProductQuantityById,
   createNewCollection,
   createNewWood,

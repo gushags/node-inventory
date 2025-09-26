@@ -23,9 +23,7 @@
       <p>Quantity: <%= inventory.finv_quantity %></p>
     </div>
     <div>
-      <button method="GET" action="/update/<%= inventory.furn_id %>">
-        Update
-      </button>
+      <a href="/update/<%= inventory.furn_id %>">Edit</a>
       <form
         method="POST"
         action="/delete/<%= inventory.furn_id %>?_method=DELETE"
