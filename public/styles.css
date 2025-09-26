@@ -79,3 +79,14 @@ h2 {
 .not-found > h3 {
   margin: 25px 0;
 }
+
+table {
+  border-collapse: collapse;
+}
+
+.table-clickable {
+  cursor: pointer;
+}
+.table-clickable:hover {
+  background-color: lightgreen;
+}

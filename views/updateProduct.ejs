@@ -1,33 +1,29 @@
-<!-- views/new.ejs -->
-
+<!-- views/updateProduct.ejs -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles.css" />
-    <title><%= title %></title>
+    <title>Document</title>
   </head>
-  <%- include('partials/nav.ejs') %>
   <body>
-    <h1>Create a new furniture item.</h1>
-    <form action="/new" method="POST">
-      <label for="name">Name:</label>
+    <form method="POST" action="/product/<%= inventory.finv_id %>">
+      <label for="name">Product name:</label>
+      <input type="text" value="<%= inventory.furn_name %>" />
+      <label for="quantity">Quantity:</label>
       <input
-        type="text"
-        name="name"
-        id="name"
-        placeholder="Enter furniture name"
-      />
-      <label for="description">Description:</label>
-      <input
-        type="textarea"
-        name="description"
-        id="description"
-        placeholder="Describe the new furniture."
+        type="number"
+        name="quantity"
+        min="0"
+        value="<%= inventory.finv_quantity %>"
       />
       <label for="quantity">Quantity:</label>
-      <input type="number" name="quantity" id="quantity" min="0" />
+      <input
+        type="number"
+        name="quantity"
+        min="0"
+        value="<%= inventory.finv_quantity %>"
+      />
       <label for="wood">Wood:</label>
       <select id="wood" name="wood">
         <option disabled selected value>-- select an option --</option>
@@ -58,7 +54,7 @@
         </option>
         <% }) %>
       </select>
-      <button type="submit">Submit</button>
+      <button type="submit">Update</button>
     </form>
   </body>
 </html>

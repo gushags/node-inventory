@@ -41,14 +41,19 @@ async function getInventoryByIdControl(req, res) {
   const { id } = req.params;
   console.log('id: ', id);
   const inventory = await db.getInventoryById(id);
+  console.log(inventory);
   res.render('product', {
     title: 'Product',
     alert: null,
     inventory: inventory,
   });
 }
+async function getProductByIdControl(req, res) {}
 
-async function updateProdQtyByIdControl(req, res) {
+async function updateProdByIdControl(req, res) {}
+
+async function updateProdByIdControl(req, res) {
+  // fix this to update everything
   const { quantity } = req.body;
   const finv_id = req.params.id;
   const inventory = await db.updateProductQuantityById(finv_id, quantity);
@@ -69,6 +74,7 @@ module.exports = {
   getAllInventoryControl: catchAsyncErr(getAllInventoryControl),
   getInventoryByCatControl: catchAsyncErr(getInventoryByCatControl),
   getInventoryByIdControl: catchAsyncErr(getInventoryByIdControl),
-  updateProdQtyByIdControl: catchAsyncErr(updateProdQtyByIdControl),
+  getProductByIdControl: catchAsyncErr(getProductByIdControl),
+  updateProdByIdControl: catchAsyncErr(updateProdByIdControl),
   deleteProductByIdControl: catchAsyncErr(deleteProductByIdControl),
 };

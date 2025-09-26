@@ -5,7 +5,8 @@ const {
   getAllInventoryControl,
   getInventoryByCatControl,
   getInventoryByIdControl,
-  updateProdQtyByIdControl,
+  getProductByIdControl,
+  updateProdByIdControl,
   deleteProductByIdControl,
 } = require('../controllers/indexController');
 
@@ -17,7 +18,8 @@ indexRouter.get('/0&0&0&0', (req, res) => {
 });
 indexRouter.get('/:category', getInventoryByCatControl);
 indexRouter.get('/product/:id', getInventoryByIdControl);
-indexRouter.post('/product/:id', updateProdQtyByIdControl);
+indexRouter.get('/update/:id', getProductByIdControl);
+indexRouter.post('/product/:id', updateProdByIdControl);
 indexRouter.delete('/delete/:id', deleteProductByIdControl);
 
 module.exports = indexRouter;

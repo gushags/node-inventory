@@ -13,24 +13,25 @@
     <% if (alert) { %>
     <div><%= alert %></div>
     <% } %>
-    <form method="POST" action="/product/<%= inventory.finv_id %>">
-      <p>Product name: <%= inventory.furn_name %></p>
-      <input
-        type="number"
-        name="quantity"
-        min="0"
-        value="<%= inventory.finv_quantity %>"
-      />
-      <button type="submit">Update</button>
-    </form>
     <div>
-      <a href="/">Home</a>
+      <h2>Product name: <%= inventory.furn_name %></h2>
+      <p>Wood: <%= inventory.wood_name %></p>
+      <p>Furniture Type: <%= inventory.ftype_name %></p>
+      <p>Room: <%= inventory.room_name %></p>
+      <p>Collection: <%= inventory.collection_name %></p>
+      <p>SKU: <%= inventory.finv_sku %></p>
+      <p>Quantity: <%= inventory.finv_quantity %></p>
     </div>
-    <form
-      method="POST"
-      action="/delete/<%= inventory.furn_id %>?_method=DELETE"
-    >
-      <button type="submit">Delete</button>
-    </form>
+    <div>
+      <button method="GET" action="/update/<%= inventory.furn_id %>">
+        Update
+      </button>
+      <form
+        method="POST"
+        action="/delete/<%= inventory.furn_id %>?_method=DELETE"
+      >
+        <button type="submit">Delete</button>
+      </form>
+    </div>
   </body>
 </html>

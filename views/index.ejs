@@ -49,28 +49,31 @@
     </div>
     <div><a href="/new">Create New Product</a></div>
     <table>
-      <tr>
-        <th>Qty.</th>
-        <th>Product Name</th>
-        <th>Wood</th>
-        <th>SKU</th>
-        <th>Furniture Type</th>
-        <th>Collection</th>
-        <th>Room</th>
-      </tr>
-      <% inventory.map((item) => { %>
-      <tr id="<%= item.finv_id %>">
-        <td><%= item.finv_quantity %></td>
-        <td><%= item.furn_name %></td>
-        <td><%= item.wood_name || '—' %></td>
-        <td><%= item.finv_sku %></td>
-        <td><%= item.ftype_name || '—' %></td>
-        <td><%= item.collection_name || '—' %></td>
-        <td><%= item.room_name || '—' %></td>
-        <td>
-          <a href="/product/<%= item.finv_id %>">Edit</a>
-        </td>
-      </tr>
+      <tbody>
+        <tr>
+          <th>Qty.</th>
+          <th>Product Name</th>
+          <th>Wood</th>
+          <th>SKU</th>
+          <th>Furniture Type</th>
+          <th>Collection</th>
+          <th>Room</th>
+        </tr>
+        <% inventory.map((item) => { %>
+        <tr
+          class="table-clickable"
+          data-href="/product/<%= item.finv_id %>"
+          id="<%= item.finv_id %>"
+        >
+          <td><%= item.finv_quantity %></td>
+          <td><%= item.furn_name %></td>
+          <td><%= item.wood_name || '—' %></td>
+          <td><%= item.finv_sku %></td>
+          <td><%= item.ftype_name || '—' %></td>
+          <td><%= item.collection_name || '—' %></td>
+          <td><%= item.room_name || '—' %></td>
+        </tr>
+      </tbody>
       <% }) %>
     </table>
     <script src="/index.js"></script>
