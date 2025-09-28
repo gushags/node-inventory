@@ -50,6 +50,6 @@ updateRadioButtons();
 const tableRows = document.querySelectorAll('.table-clickable');
 for (const tableRow of tableRows) {
   tableRow.addEventListener('click', function () {
-    window.open(this.dataset.href, '_blank');
+    window.open(this.dataset.href, '_self');
   });
 }

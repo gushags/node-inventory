@@ -10,8 +10,9 @@
   <body>
     <div>
       <form method="POST" action="/product/<%= inventory.finv_id %>">
+        <input hidden name="furn_id" value="<%= inventory.furn_id %>" />
         <label for="name">Product name:</label>
-        <input type="text" value="<%= inventory.furn_name %>" />
+        <input type="text" name="name" value="<%= inventory.furn_name %>" />
         <label for="quantity">Quantity:</label>
         <input
           type="number"

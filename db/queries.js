@@ -4,18 +4,32 @@ const pool = require('./pool');
 
 async function getAllInventory() {
   const SQL_ALL_INVENTORY = `
-    SELECT furn_name, wood_name, ftype_name, collection_name, room_name, finv_id, finv_sku, finv_quantity FROM furniture_inventory
-    LEFT JOIN furniture
-        ON furniture.furn_id = furniture_inventory.furn_id
-    LEFT JOIN wood
-        ON wood.wood_id = furniture_inventory.wood_id
-    LEFT JOIN furniture_types
-        ON furniture_types.ftype_id = furniture_inventory.ftype_id
-    LEFT JOIN rooms
-        ON rooms.room_id = furniture_inventory.room_id
-    LEFT JOIN collections
-        ON collections.collection_id = furniture_inventory.collection_id
-    ORDER BY collection_name, furn_name;
+    SELECT
+    fi.finv_id,
+    fi.finv_sku,
+    fi.finv_quantity,
+    f.furn_name,
+    w.wood_id,
+    w.wood_name,
+    ft.ftype_id,
+    ft.ftype_name,
+    c.collection_id,
+    c.collection_name,
+    r.room_id,
+    r.room_name
+FROM furniture_inventory fi
+LEFT JOIN furniture f
+    ON f.furn_id = fi.furn_id
+LEFT JOIN wood w
+    ON w.wood_id = fi.wood_id
+LEFT JOIN furniture_types ft
+    ON ft.ftype_id = fi.ftype_id
+LEFT JOIN rooms r
+    ON r.room_id = fi.room_id
+LEFT JOIN collections c
+    ON c.collection_id = fi.collection_id
+ORDER BY c.collection_name, f.furn_name;
+
     `;
   const { rows } = await pool.query(SQL_ALL_INVENTORY);
   return rows;
@@ -201,6 +215,7 @@ async function deleteRoomById(room_id) {
 
 async function getAllWood() {
   const { rows } = await pool.query(`SELECT * FROM wood;`);
+  console.log(rows);
   return rows;
 }
 
@@ -254,6 +269,49 @@ async function updateRoom(name, id) {
   );
   console.log('Updated room id# ', id);
 }
+
+async function updateProductById(
+  id,
+  furn_id,
+  name,
+  quantity,
+  wood,
+  ftype,
+  room,
+  collection
+) {
+  // Update furniture name if changed
+  await pool.query(
+    `
+    UPDATE furniture
+      SET furn_name = $1
+      WHERE furn_id = $2
+    `,
+    [name, furn_id]
+  );
+  // Update inventory with all the data
+  await pool.query(
+    `UPDATE furniture_inventory
+      SET finv_quantity = $1,
+          wood_id = $2,
+          collection_id = $3,
+          ftype_id = $4,
+          room_id = $5
+      WHERE finv_id = $6`,
+    [quantity, wood, collection, ftype, room, id]
+  );
+
+  const result = await pool.query(
+    `
+    SELECT * FROM FURNITURE_INVENTORY
+    WHERE finv_id = $1
+    `,
+    [id]
+  );
+  console.log('Updated product id# ', furn_id);
+  return result.rows[0];
+}
+
 module.exports = {
   getAllInventory,
   getInventoryByCategory,
@@ -279,4 +337,5 @@ module.exports = {
   updateWood,
   updateFtype,
   updateRoom,
+  updateProductById,
 };

@@ -67,10 +67,18 @@ async function getProductByIdControl(req, res) {
 }
 
 async function updateProdByIdControl(req, res) {
-  // fix this to update everything
-  const { quantity } = req.body;
-  const finv_id = req.params.id;
-  const inventory = await db.updateProductQuantityById(finv_id, quantity);
+  const { furn_id, name, quantity, wood, ftype, room, collection } = req.body;
+  const id = req.params.id;
+  const inventory = await db.updateProductById(
+    id,
+    furn_id,
+    name,
+    quantity,
+    wood,
+    ftype,
+    room,
+    collection
+  );
   res.render('product', {
     title: 'Product',
     alert: 'Product updated.',
