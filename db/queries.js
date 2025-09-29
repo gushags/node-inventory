@@ -27,7 +27,7 @@ LEFT JOIN furniture_types ft
 LEFT JOIN rooms r
     ON r.room_id = fi.room_id
 LEFT JOIN collections c
-    ON c.collection_id = fi.collection_id
+    ON c.collection_id = f.collection_id
 ORDER BY c.collection_name, f.furn_name;
 
     `;
@@ -55,7 +55,7 @@ async function getInventoryByCategory(category) {
       LEFT JOIN rooms
           ON rooms.room_id = furniture_inventory.room_id
       LEFT JOIN collections
-          ON collections.collection_id = furniture_inventory.collection_id
+          ON collections.collection_id = furniture.collection_id
       WHERE
           ($1::text IS NULL OR collection_name = $1::text)
           AND ($2::text IS NULL OR wood_name = $2::text)
@@ -74,7 +74,7 @@ async function getInventoryByCategory(category) {
 
 async function getInventoryById(id) {
   const INVENTORY_BY_ID = `
-  SELECT furniture.furn_id, furn_name, wood_name, ftype_name, collection_name, room_name, finv_id, finv_sku, finv_quantity FROM furniture_inventory
+  SELECT furniture.furn_id, furn_name, furn_description, wood_name, ftype_name, collection_name, room_name, finv_id, finv_sku, finv_quantity FROM furniture_inventory
       LEFT JOIN furniture
           ON furniture.furn_id = furniture_inventory.furn_id
       LEFT JOIN wood
@@ -84,29 +84,10 @@ async function getInventoryById(id) {
       LEFT JOIN rooms
           ON rooms.room_id = furniture_inventory.room_id
       LEFT JOIN collections
-          ON collections.collection_id = furniture_inventory.collection_id
+          ON collections.collection_id = furniture.collection_id
       WHERE finv_id = $1
   `;
   const result = await pool.query(INVENTORY_BY_ID, [id]);
-  return result.rows[0];
-}
-
-async function getProductById(id) {
-  const PRODUCT_BY_ID = `
-  SELECT furniture.furn_id, furn_name, wood_name, ftype_name, collection_name, room_name, finv_id, finv_sku, finv_quantity FROM furniture_inventory
-      LEFT JOIN furniture
-          ON furniture.furn_id = furniture_inventory.furn_id
-      LEFT JOIN wood
-          ON wood.wood_id = furniture_inventory.wood_id
-      LEFT JOIN furniture_types
-          ON furniture_types.ftype_id = furniture_inventory.ftype_id
-      LEFT JOIN rooms
-          ON rooms.room_id = furniture_inventory.room_id
-      LEFT JOIN collections
-          ON collections.collection_id = furniture_inventory.collection_id
-      WHERE furniture.furn_id = $1
-  `;
-  const result = await pool.query(PRODUCT_BY_ID, [id]);
   return result.rows[0];
 }
 
@@ -122,13 +103,13 @@ async function updateProductQuantityById(finv_id, quantity) {
   return result.rows[0];
 }
 
-async function createNewFurniture(name, description) {
+async function createNewFurniture(name, description, collection) {
   await pool.query(
     `
-    INSERT INTO furniture (furn_name, furn_description)
-    VALUES ($1, $2)
+    INSERT INTO furniture (furn_name, furn_description, collection_id)
+    VALUES ($1, $2, $3)
     `,
-    [name, description]
+    [name, description, collection]
   );
   const result = await pool.query(
     `
@@ -140,20 +121,13 @@ async function createNewFurniture(name, description) {
   return result.rows[0];
 }
 
-async function createNewProduct(
-  furn_id,
-  quantity,
-  wood,
-  ftype,
-  room,
-  collection
-) {
+async function createNewProduct(furn_id, quantity, wood, ftype, room) {
   await pool.query(
     `
-    INSERT INTO furniture_inventory (furn_id, finv_quantity, wood_id, ftype_id, room_id, collection_id, finv_sku )
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    INSERT INTO furniture_inventory (furn_id, finv_quantity, wood_id, ftype_id, room_id )
+    VALUES ($1, $2, $3, $4, $5)
     `,
-    [furn_id, quantity, wood, ftype, room, collection]
+    [furn_id, quantity, wood, ftype, room]
   );
 }
 
@@ -274,6 +248,7 @@ async function updateProductById(
   id,
   furn_id,
   name,
+  description,
   quantity,
   wood,
   ftype,
@@ -284,39 +259,34 @@ async function updateProductById(
   await pool.query(
     `
     UPDATE furniture
-      SET furn_name = $1
-      WHERE furn_id = $2
+      SET furn_name = $1,
+          furn_description = $2,
+          collection_id = $3
+      WHERE furn_id = $4
     `,
-    [name, furn_id]
+    [name, description, collection, furn_id]
   );
   // Update inventory with all the data
   await pool.query(
     `UPDATE furniture_inventory
       SET finv_quantity = $1,
           wood_id = $2,
-          collection_id = $3,
-          ftype_id = $4,
-          room_id = $5
-      WHERE finv_id = $6`,
-    [quantity, wood, collection, ftype, room, id]
+          ftype_id = $3,
+          room_id = $4
+      WHERE finv_id = $5`,
+    [quantity, wood, ftype, room, id]
   );
 
-  const result = await pool.query(
-    `
-    SELECT * FROM FURNITURE_INVENTORY
-    WHERE finv_id = $1
-    `,
-    [id]
-  );
+  const row = await getInventoryById(id);
+  console.log(row);
   console.log('Updated product id# ', furn_id);
-  return result.rows[0];
+  return row;
 }
 
 module.exports = {
   getAllInventory,
   getInventoryByCategory,
   getInventoryById,
-  getProductById,
   updateProductQuantityById,
   createNewCollection,
   createNewWood,

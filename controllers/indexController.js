@@ -48,7 +48,7 @@ async function getInventoryByIdControl(req, res) {
 }
 async function getProductByIdControl(req, res) {
   const { id } = req.params;
-  const inventory = await db.getProductById(id);
+  const inventory = await db.getInventoryById(id);
   console.log(inventory);
   const [collections, wood, ftypes, rooms] = await Promise.all([
     db.getAllCollections(),
@@ -67,18 +67,29 @@ async function getProductByIdControl(req, res) {
 }
 
 async function updateProdByIdControl(req, res) {
-  const { furn_id, name, quantity, wood, ftype, room, collection } = req.body;
+  const {
+    furn_id,
+    name,
+    description,
+    quantity,
+    wood,
+    ftype,
+    room,
+    collection,
+  } = req.body;
   const id = req.params.id;
   const inventory = await db.updateProductById(
     id,
     furn_id,
     name,
+    description,
     quantity,
     wood,
     ftype,
     room,
     collection
   );
+  console.log(inventory);
   res.render('product', {
     title: 'Product',
     alert: 'Product updated.',

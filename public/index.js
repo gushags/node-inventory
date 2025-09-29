@@ -1,5 +1,6 @@
 // index.js
 
+// Filter products by category
 function submitCategorySearch() {
   const collection = document.querySelector(
     'input[name="collection"]:checked'
@@ -8,7 +9,7 @@ function submitCategorySearch() {
   const ftype = document.querySelector('input[name="ftype"]:checked').value;
   const room = document.querySelector('input[name="room"]:checked').value;
   const string = collection + '&' + wood + '&' + ftype + '&' + room;
-  localStorage.clear();
+  sessionStorage.clear();
 
   const radio = {
     collection: collection,
@@ -16,7 +17,7 @@ function submitCategorySearch() {
     ftype: ftype,
     room: room,
   };
-  localStorage.setItem('radioButtons', JSON.stringify(radio));
+  sessionStorage.setItem('radioButtons', JSON.stringify(radio));
   window.location.replace(`../${string}`);
 }
 
@@ -31,8 +32,17 @@ function checkRadioButtonByValue(name, valueToSelect) {
 }
 
 function updateRadioButtons() {
-  if (localStorage) {
-    const storedRadio = JSON.parse(localStorage.getItem('radioButtons'));
+  const path = window.location.pathname;
+
+  // If we're at the base URL, clear localStorage and don't restore
+  if (path === '/' || path === '/index') {
+    sessionStorage.removeItem('radioButtons');
+    return;
+  }
+
+  const storedRadio = JSON.parse(sessionStorage.getItem('radioButtons'));
+  if (storedRadio) {
+    const storedRadio = JSON.parse(sessionStorage.getItem('radioButtons'));
     const collectionRad = storedRadio.collection;
     const woodRad = storedRadio.wood;
     const ftypeRad = storedRadio.ftype;
