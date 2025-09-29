@@ -63,3 +63,19 @@ for (const tableRow of tableRows) {
     window.open(this.dataset.href, '_self');
   });
 }
+for (let i = 1; i < tableRows.length; i += 2) {
+  tableRows[i].classList.add('table-color');
+}
+
+// add event listeners to all category headers
+const categoryHeads = document.querySelectorAll('h5');
+for (const categoryHead of categoryHeads) {
+  categoryHead.addEventListener('click', function () {
+    categoryHead.classList.toggle('active');
+    const form = categoryHead.parentElement;
+    const children = form.children;
+    for (let i = 1; i < children.length; i++) {
+      children[i].classList.toggle('hidden');
+    }
+  });
+}

@@ -4,7 +4,6 @@
 
 body {
   color: green;
-  width: 75%;
   margin: 50px auto;
 }
 
@@ -23,65 +22,48 @@ h2 {
   text-align: center;
 }
 
-.newpost {
-  margin-bottom: 25px;
-}
-
-.message,
-.message-single {
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-  margin: 0 auto;
-}
-
-.message-single {
-  border: 2px solid green;
-  border-radius: 25px;
-  padding: 45px;
-  line-height: 2rem;
-}
-
-#date-added-home,
-#date-added {
-  margin-top: 7px;
-  font-size: 0.7rem;
-}
-#date-added {
-  margin-top: 20px;
-}
-
-.message > label {
-  font-size: 1.5rem;
-}
-
-#message {
-  height: 250px;
-}
-
-#message-btn {
+h5 {
   margin-top: 10px;
-  background-color: green;
-  color: white;
-  border: none;
-  font-size: 1.5rem;
 }
 
-.not-found {
-  text-align: center;
+main {
+  width: 95%;
+  margin: 0 auto;
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1fr 6fr;
 }
 
-.not-found > h1 {
-  margin: 50px 0;
-  color: red;
+.collection,
+.wood,
+.ftype,
+.room {
+  font-size: 0.9rem;
 }
 
-.not-found > h3 {
-  margin: 25px 0;
+h5::before {
+  content: '+ ';
+}
+h5.active::before {
+  content: '- ';
 }
 
+.hidden {
+  display: none;
+}
+
+input[type='radio'] {
+  accent-color: green;
+}
+
+/* table style */
 table {
   border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  text-align: left;
 }
 
 .table-clickable {
@@ -89,4 +71,8 @@ table {
 }
 .table-clickable:hover {
   background-color: lightgreen;
+}
+
+.table-color {
+  background-color: #00800025;
 }
