@@ -36,8 +36,25 @@ main {
 
 nav {
   width: 95%;
-  margin: 0 auto;
+  margin: 0 auto 40px;
 }
+
+nav > a {
+  font-weight: bold;
+  margin-right: 25px;
+  padding: 3px 8px;
+  text-decoration: none;
+  text-decoration-color: green;
+}
+
+a:-webkit-any-link {
+  color: green;
+}
+a:-webkit-any-link:hover {
+  color: rgb(1, 68, 1);
+  background-color: lightgreen;
+}
+
 .collection,
 .wood,
 .ftype,

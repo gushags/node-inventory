@@ -189,7 +189,6 @@ async function deleteRoomById(room_id) {
 
 async function getAllWood() {
   const { rows } = await pool.query(`SELECT * FROM wood;`);
-  console.log(rows);
   return rows;
 }
 

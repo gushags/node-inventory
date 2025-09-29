@@ -49,7 +49,6 @@ async function getInventoryByIdControl(req, res) {
 async function getProductByIdControl(req, res) {
   const { id } = req.params;
   const inventory = await db.getInventoryById(id);
-  console.log(inventory);
   const [collections, wood, ftypes, rooms] = await Promise.all([
     db.getAllCollections(),
     db.getAllWood(),
@@ -89,7 +88,6 @@ async function updateProdByIdControl(req, res) {
     room,
     collection
   );
-  console.log(inventory);
   res.render('product', {
     title: 'Product',
     alert: 'Product updated.',

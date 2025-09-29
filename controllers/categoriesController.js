@@ -54,7 +54,6 @@ async function updateRoomControl(req, res) {
 
 async function createNewCollectionControl(req, res) {
   const name = req.body.collection;
-  console.log(name);
   await db.createNewCollection(name);
   await renderCategories(res, 'The Collection category has been updated.');
 }
