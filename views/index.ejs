@@ -15,46 +15,74 @@
     <main>
       <div class="categories">
         <h4>Filter by category</h4>
-        <form name="collections">
+        <form>
           <h5>Collection</h5>
-          <div class='collection hidden'>
-            <input type="radio" name="collection" value="0" checked > All</input>
+          <div class="collection hidden">
+            <label
+              ><input type="radio" name="collection" value="0" checked />
+              All</label
+            >
           </div>
           <% collections.map((item) => { %>
-          <div class='collection hidden'>
-            <input
-              type="radio"
-              name="collection"
-              value="<%= item.collection_name %>"
-            > <%= item.collection_name %></input>
-          </div><% }) %>
+          <div class="collection hidden">
+            <label>
+              <input
+                type="radio"
+                name="collection"
+                value="<%= item.collection_name %>"
+              />
+              <%= item.collection_name %>
+            </label>
+          </div>
+          <% }) %>
         </form>
-        <form name="woods">
+        <form>
           <h5>Wood</h5>
-          <div class='wood hidden'><input type="radio" name="wood" value="0" checked > All</input></div> <%
-          wood.map((item) => { %>
-          <div class='wood hidden'>
-            <input type="radio" name="wood" value="<%= item.wood_name %>" />
-            <%= item.wood_name %></input>
-          </div> <% }) %>
+          <div class="wood hidden">
+            <label
+              ><input type="radio" name="wood" value="0" checked /> All</label
+            >
+          </div>
+          <% wood.map((item) => { %>
+          <div class="wood hidden">
+            <label>
+              <input type="radio" name="wood" value="<%= item.wood_name %>" />
+              <%= item.wood_name %>
+            </label>
+          </div>
+          <% }) %>
         </form>
-        <form name="ftypes">
+        <form>
           <h5>Furniture type</h5>
-          <div class='ftype hidden'><input type="radio" name="ftype" value="0" checked > All</input></div> <%
-          ftypes.map((item) => { %>
-          <div class='ftype hidden'>
-            <input type="radio" name="ftype" value="<%= item.ftype_name %>">
-            <%= item.ftype_name %></input>
-          </div> <% }) %>
+          <div class="ftype hidden">
+            <label>
+              <input type="radio" name="ftype" value="0" checked /> All
+            </label>
+          </div>
+          <% ftypes.map((item) => { %>
+          <div class="ftype hidden">
+            <label>
+              <input type="radio" name="ftype" value="<%= item.ftype_name %>" />
+              <%= item.ftype_name %>
+            </label>
+          </div>
+          <% }) %>
         </form>
-        <form name="rooms">
+        <form>
           <h5>Rooms</h5>
-          <div class='room hidden'><input type="radio" name="room" value="0" checked > All</input></div> <%
-          rooms.map((item) => { %>
-          <div class='room hidden'>
-            <input type="radio" name="room" value="<%= item.room_name %>">
-            <%= item.room_name %></input>
-          </div> <% }) %>
+          <div class="room hidden">
+            <label
+              ><input type="radio" name="room" value="0" checked /> All</label
+            >
+          </div>
+          <% rooms.map((item) => { %>
+          <div class="room hidden">
+            <label>
+              <input type="radio" name="room" value="<%= item.room_name %>" />
+              <%= item.room_name %>
+            </label>
+          </div>
+          <% }) %>
         </form>
         <!-- TODO change this to be a form submit instead of a function -->
         <button type="submit" onclick="submitCategorySearch()">Filter</button>
