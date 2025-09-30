@@ -181,3 +181,35 @@ th {
 .white-text > nav > a {
   color: white;
 }
+
+.card-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 1.15rem;
+  margin-top: 15px;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.link-button:hover {
+  color: rgb(1, 68, 1);
+  background-color: lightgreen;
+  border-radius: none;
+}
+
+.prod-buttons {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  font-size: 1.15rem;
+}

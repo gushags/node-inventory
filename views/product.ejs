@@ -19,34 +19,33 @@
       <div class="prod-container">
         <div>
           <h1><%= inventory.furn_name %></h1>
+          <h2 id="coll-name" data-collection="<%= inventory.collection_name %>">
+            Part of the <%= inventory.collection_name %>
+          </h2>
           <div class="desc">
             <p><%= inventory.furn_description %></p>
           </div>
-          <div>
-            <p>Wood: <%= inventory.wood_name %></p>
-            <p>Furniture Type: <%= inventory.ftype_name %></p>
-            <p>Room: <%= inventory.room_name %></p>
-          </div>
-          <div>
-            <p
-              id="coll-name"
-              data-collection="<%= inventory.collection_name %>"
-            >
-              Collection: <%= inventory.collection_name %>
-            </p>
-            <p>Quantity: <%= inventory.finv_quantity %></p>
-          </div>
-          <div>
-            <p>SKU: <%= inventory.finv_sku %></p>
+          <div class="card-bottom">
+            <div>
+              <p><strong>Wood:</strong> <%= inventory.wood_name %></p>
+              <p>
+                <strong>Furniture Type:</strong> <%= inventory.ftype_name %>
+              </p>
+              <p><strong>Room:</strong> <%= inventory.room_name %></p>
+            </div>
+            <div>
+              <p><strong>Quantity:</strong> <%= inventory.finv_quantity %></p>
+              <p><strong>SKU:</strong> <%= inventory.finv_sku %></p>
+            </div>
           </div>
         </div>
-        <div>
+        <div class="prod-buttons">
           <a href="/update/<%= inventory.finv_id %>">Edit</a>
           <form
             method="POST"
             action="/delete/<%= inventory.furn_id %>?_method=DELETE"
           >
-            <button type="submit">Delete</button>
+            <button class="link-button" type="submit">Delete</button>
           </form>
         </div>
       </div>
