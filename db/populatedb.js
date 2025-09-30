@@ -96,8 +96,7 @@ VALUES
     ('Ezra Collection'),
     ('Fitzgerald Collection'),
     ('Hemingway Collection'),
-    ('Sayers Collection'),
-    ('Wolfe Collection');
+    ('Woolf Collection');
 
 INSERT INTO furniture_types (ftype_name)
 VALUES

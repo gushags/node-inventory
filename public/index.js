@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const path = window.location.pathname;
 
     // Reset filters to "ALL" if on base URL
-    if (path === '/' || path === '/index') {
+    if (path === '/') {
       sessionStorage.removeItem('radioButtons');
       checkRadioButtonByValue('collection', 'ALL');
       checkRadioButtonByValue('wood', 'ALL');

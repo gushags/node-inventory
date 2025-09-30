@@ -8,30 +8,49 @@
     <link rel="stylesheet" href="/styles.css" />
     <title><%= title %></title>
   </head>
-  <header><%- include('partials/nav.ejs') %></header>
-  <body>
-    <% if (alert) { %>
-    <div><%= alert %></div>
-    <% } %>
-    <div>
-      <h2>Product Page</h2>
-      <p>Product name: <%= inventory.furn_name %></p>
-      <p>Description: <%= inventory.furn_description %></p>
-      <p>Wood: <%= inventory.wood_name %></p>
-      <p>Furniture Type: <%= inventory.ftype_name %></p>
-      <p>Room: <%= inventory.room_name %></p>
-      <p>Collection: <%= inventory.collection_name %></p>
-      <p>SKU: <%= inventory.finv_sku %></p>
-      <p>Quantity: <%= inventory.finv_quantity %></p>
-    </div>
-    <div>
-      <a href="/update/<%= inventory.finv_id %>">Edit</a>
-      <form
-        method="POST"
-        action="/delete/<%= inventory.furn_id %>?_method=DELETE"
-      >
-        <button type="submit">Delete</button>
-      </form>
-    </div>
+  <body class="product-page">
+    <header class="product-header white-text">
+      <%- include('partials/nav.ejs') %>
+    </header>
+    <main>
+      <% if (alert) { %>
+      <div><%= alert %></div>
+      <% } %>
+      <div class="prod-container">
+        <div>
+          <h1><%= inventory.furn_name %></h1>
+          <div class="desc">
+            <p><%= inventory.furn_description %></p>
+          </div>
+          <div>
+            <p>Wood: <%= inventory.wood_name %></p>
+            <p>Furniture Type: <%= inventory.ftype_name %></p>
+            <p>Room: <%= inventory.room_name %></p>
+          </div>
+          <div>
+            <p
+              id="coll-name"
+              data-collection="<%= inventory.collection_name %>"
+            >
+              Collection: <%= inventory.collection_name %>
+            </p>
+            <p>Quantity: <%= inventory.finv_quantity %></p>
+          </div>
+          <div>
+            <p>SKU: <%= inventory.finv_sku %></p>
+          </div>
+        </div>
+        <div>
+          <a href="/update/<%= inventory.finv_id %>">Edit</a>
+          <form
+            method="POST"
+            action="/delete/<%= inventory.furn_id %>?_method=DELETE"
+          >
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script src="/product.js"></script>
   </body>
 </html>
