@@ -24,6 +24,7 @@ h2 {
 
 h5 {
   margin-top: 10px;
+  cursor: pointer;
 }
 
 main {
@@ -126,4 +127,16 @@ th {
   border: 2px solid green;
   border-radius: 10px;
   padding: 10px;
+}
+
+.categories-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 15px;
+}
+
+.open-modal {
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 10px 0;
 }

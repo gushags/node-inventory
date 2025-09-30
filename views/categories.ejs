@@ -13,7 +13,7 @@
       <% if (updated) { %>
       <div><%= updated %></div>
       <% } %>
-      <div class="categories">
+      <div class="categories-container">
         <div class="collections">
           <h3>Collections</h3>
           <% collections.map((item) => { %>
@@ -45,7 +45,7 @@
             </button>
           </form>
           <% }) %>
-          <button id="collection-open">Add New Collection</button>
+          <p class="open-modal" id="collection-open">Add New Collection</p>
         </div>
         <div class="woods">
           <h3>Wood</h3>
@@ -74,7 +74,7 @@
             </button>
           </form>
           <% }) %>
-          <button id="wood-open">Add New Wood</button>
+          <p class="open-modal" id="wood-open">Add New Wood</p>
         </div>
         <div class="ftypes">
           <h3>Furniture Types</h3>
@@ -103,7 +103,7 @@
             </button>
           </form>
           <% }) %>
-          <button id="ftype-open">Add New Furniture Type</button>
+          <p class="open-modal" id="ftype-open">Add New Furniture Type</p>
         </div>
         <div class="rooms">
           <h3>Rooms</h3>
@@ -132,7 +132,7 @@
             </button>
           </form>
           <% }) %>
-          <button id="room-open">Add New Room</button>
+          <p class="open-modal" id="room-open">Add New Room</p>
         </div>
       </div>
       <dialog id="collection-modal">
