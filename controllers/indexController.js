@@ -11,7 +11,7 @@ async function getAllInventoryControl(req, res) {
   const rooms = await db.getAllRooms();
 
   res.render('index', {
-    title: '1912 Inc. Inventory',
+    title: '1912 Furniture Inc. — Inventory',
     collections: collections,
     wood: wood,
     ftypes: ftypes,
@@ -28,7 +28,7 @@ async function getInventoryByCatControl(req, res) {
   const ftypes = await db.getAllTypes();
   const rooms = await db.getAllRooms();
   res.render('index', {
-    title: '1912 Inc. Inventory',
+    title: '1912 Furniture Inc. — Inventory',
     collections: collections,
     wood: wood,
     ftypes: ftypes,

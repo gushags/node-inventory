@@ -8,72 +8,75 @@
     <title><%= title %></title>
   </head>
   <body>
-    <div>
-      <form method="POST" action="/product/<%= inventory.finv_id %>">
-        <input hidden name="furn_id" value="<%= inventory.furn_id %>" />
-        <label for="name">Product name:</label>
-        <input type="text" name="name" value="<%= inventory.furn_name %>" />
-        <label for="description">Description:</label>
-        <input
-          type="text"
-          name="description"
-          value="<%= inventory.furn_description %>"
-        />
-        <label for="quantity">Quantity:</label>
-        <input
-          type="number"
-          name="quantity"
-          min="0"
-          value="<%= inventory.finv_quantity %>"
-        />
-        <label for="wood">Wood:</label>
-        <select id="wood" name="wood">
-          <% wood.map((item) => { %> <% if (item.wood_name ==
-          inventory.wood_name) { %>
-          <option selected value="<%= item.wood_id %>">
-            <%= item.wood_name %>
-          </option>
-          <% } else { %>
-          <option value="<%= item.wood_id %>"><%= item.wood_name %></option>
-          <% } }) %>
-        </select>
-        <label for="ftype">Furniture Type:</label>
-        <select id="ftype" name="ftype">
-          <% ftypes.map((item) => { %> <% if (item.ftype_name ==
-          inventory.ftype_name) { %>
-          <option selected value="<%= item.ftype_id %>">
-            <%= item.ftype_name %>
-          </option>
-          <% } else { %>
-          <option value="<%= item.ftype_id %>"><%= item.ftype_name %></option>
-          <% } }) %>
-        </select>
-        <label for="room">Room:</label>
-        <select id="room" name="room">
-          <% rooms.map((item) => { %> <% if (item.room_name ==
-          inventory.room_name) { %>
-          <option selected value="<%= item.room_id %>">
-            <%= item.room_name %>
-          </option>
-          <% } else { %>
-          <option value="<%= item.room_id %>"><%= item.room_name %></option>
-          <% } }) %>
-        </select>
-        <label for="collection">Collection:</label>
-        <select id="collection" name="collection">
-          <% collections.map((item) => { %> <% if (item.collection_name ==
-          inventory.collection_name) { %>
-          <option selected value="<%= item.collection_id %>">
-            <%= item.collection_name %>
-          </option>
-          <% } else { %>
-          <option value="<%= item.collection_id %>">
-            <%= item.collection_name %>
-          </option>
-          <% } }) %>
-        </select>
-        <button type="submit">Update</button>
-      </form>
-    </div>
+    <header><%- include('partials/nav.ejs') %></header>
+    <main>
+      <div>
+        <form method="POST" action="/product/<%= inventory.finv_id %>">
+          <input hidden name="furn_id" value="<%= inventory.furn_id %>" />
+          <label for="name">Product name:</label>
+          <input type="text" name="name" value="<%= inventory.furn_name %>" />
+          <label for="description">Description:</label>
+          <input
+            type="text"
+            name="description"
+            value="<%= inventory.furn_description %>"
+          />
+          <label for="quantity">Quantity:</label>
+          <input
+            type="number"
+            name="quantity"
+            min="0"
+            value="<%= inventory.finv_quantity %>"
+          />
+          <label for="wood">Wood:</label>
+          <select id="wood" name="wood">
+            <% wood.map((item) => { %> <% if (item.wood_name ==
+            inventory.wood_name) { %>
+            <option selected value="<%= item.wood_id %>">
+              <%= item.wood_name %>
+            </option>
+            <% } else { %>
+            <option value="<%= item.wood_id %>"><%= item.wood_name %></option>
+            <% } }) %>
+          </select>
+          <label for="ftype">Furniture Type:</label>
+          <select id="ftype" name="ftype">
+            <% ftypes.map((item) => { %> <% if (item.ftype_name ==
+            inventory.ftype_name) { %>
+            <option selected value="<%= item.ftype_id %>">
+              <%= item.ftype_name %>
+            </option>
+            <% } else { %>
+            <option value="<%= item.ftype_id %>"><%= item.ftype_name %></option>
+            <% } }) %>
+          </select>
+          <label for="room">Room:</label>
+          <select id="room" name="room">
+            <% rooms.map((item) => { %> <% if (item.room_name ==
+            inventory.room_name) { %>
+            <option selected value="<%= item.room_id %>">
+              <%= item.room_name %>
+            </option>
+            <% } else { %>
+            <option value="<%= item.room_id %>"><%= item.room_name %></option>
+            <% } }) %>
+          </select>
+          <label for="collection">Collection:</label>
+          <select id="collection" name="collection">
+            <% collections.map((item) => { %> <% if (item.collection_name ==
+            inventory.collection_name) { %>
+            <option selected value="<%= item.collection_id %>">
+              <%= item.collection_name %>
+            </option>
+            <% } else { %>
+            <option value="<%= item.collection_id %>">
+              <%= item.collection_name %>
+            </option>
+            <% } }) %>
+          </select>
+          <button type="submit">Update</button>
+        </form>
+      </div>
+    </main>
   </body>
 </html>

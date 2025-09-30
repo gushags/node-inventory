@@ -25,31 +25,59 @@ async function getAllCategoriesControl(req, res) {
 }
 
 async function updateCollectionControl(req, res) {
-  const name = req.body.collection;
+  const { action, collection } = req.body;
   const id = req.params.collection_id;
-  await db.updateCollection(name, id);
-  await renderCategories(res, 'Collections have been updated.');
+  if (action === 'update') {
+    await db.updateCollection(collection, id);
+    await renderCategories(res, 'Collections have been updated.');
+  } else if (action === 'delete') {
+    await db.deleteCollectionById(id);
+    await renderCategories(res, 'A collection has been deleted.');
+  } else {
+    res.status(400).send('Invalid action');
+  }
 }
 
 async function updateWoodControl(req, res) {
-  const name = req.body.wood;
+  const { action, wood } = req.body;
   const id = req.params.wood_id;
-  await db.updateWood(name, id);
-  await renderCategories(res, 'The Wood category has been updated.');
+  if (action === 'update') {
+    await db.updateWood(wood, id);
+    await renderCategories(res, 'Wood has been updated.');
+  } else if (action === 'delete') {
+    await db.deleteWoodById(id);
+    await renderCategories(res, 'A wood has been deleted.');
+  } else {
+    res.status(400).send('Invalid action');
+  }
 }
 
 async function updateFtypeControl(req, res) {
-  const name = req.body.ftype;
+  const { action, ftype } = req.body;
   const id = req.params.ftype_id;
-  await db.updateFtype(name, id);
-  await renderCategories(res, 'Furniture Types have been updated.');
+  if (action === 'update') {
+    await db.updateFtype(ftype, id);
+    await renderCategories(res, 'Furniture Types have been updated.');
+  } else if (action === 'delete') {
+    await db.deleteFtypeById(id);
+    await renderCategories(res, 'A furniture type has been deleted.');
+  } else {
+    res.status(400).send('Invalid action');
+  }
 }
 
 async function updateRoomControl(req, res) {
-  const name = req.body.room;
+  const { action, room } = req.body;
   const id = req.params.room_id;
-  await db.updateRoom(name, id);
-  await renderCategories(res, 'The Room category has been updated.');
+  if (action === 'update') {
+    await db.updateRoom(room, id);
+    await renderCategories(res, 'Rooms have been updated.');
+  } else if (action === 'delete') {
+    await db.deleteRoomById(id);
+    await renderCategories(res, 'A room has been deleted.');
+  } else {
+    res.status(400).send('Invalid action');
+  }
 }
 
 async function createNewCollectionControl(req, res) {
@@ -76,29 +104,29 @@ async function createNewRoomControl(req, res) {
   await renderCategories(res, 'The Room category has been updated.');
 }
 
-async function deleteCollectionByIdControl(req, res) {
-  const id = req.params.collection_id;
-  await db.deleteCollectionById(id);
-  await renderCategories(res, 'A collection has been deleted.');
-}
+// async function deleteCollectionByIdControl(req, res) {
+//   const id = req.params.collection_id;
+//   await db.deleteCollectionById(id);
+//   await renderCategories(res, 'A collection has been deleted.');
+// }
 
-async function deleteWoodByIdControl(req, res) {
-  const id = req.params.wood_id;
-  await db.deleteWoodById(id);
-  await renderCategories(res, 'A wood has been deleted.');
-}
+// async function deleteWoodByIdControl(req, res) {
+//   const id = req.params.wood_id;
+//   await db.deleteWoodById(id);
+//   await renderCategories(res, 'A wood has been deleted.');
+// }
 
-async function deleteFtypeByIdControl(req, res) {
-  const id = req.params.ftype_id;
-  await db.deleteFtypeById(id);
-  await renderCategories(res, 'A furniture type has been deleted.');
-}
+// async function deleteFtypeByIdControl(req, res) {
+//   const id = req.params.ftype_id;
+//   await db.deleteFtypeById(id);
+//   await renderCategories(res, 'A furniture type has been deleted.');
+// }
 
-async function deleteRoomByIdControl(req, res) {
-  const id = req.params.room_id;
-  await db.deleteRoomById(id);
-  await renderCategories(res, 'A room category has been deleted.');
-}
+// async function deleteRoomByIdControl(req, res) {
+//   const id = req.params.room_id;
+//   await db.deleteRoomById(id);
+//   await renderCategories(res, 'A room category has been deleted.');
+// }
 
 module.exports = {
   getAllCategoriesControl: catchAsyncErr(getAllCategoriesControl),
@@ -110,8 +138,4 @@ module.exports = {
   createNewWoodControl: catchAsyncErr(createNewWoodControl),
   createNewFtypeControl: catchAsyncErr(createNewFtypeControl),
   createNewRoomControl: catchAsyncErr(createNewRoomControl),
-  deleteCollectionByIdControl: catchAsyncErr(deleteCollectionByIdControl),
-  deleteWoodByIdControl: catchAsyncErr(deleteWoodByIdControl),
-  deleteFtypeByIdControl: catchAsyncErr(deleteFtypeByIdControl),
-  deleteRoomByIdControl: catchAsyncErr(deleteRoomByIdControl),
 };

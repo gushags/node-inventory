@@ -9,113 +9,119 @@
 
     <title><%= title %></title>
   </head>
-  <%- include('partials/nav.ejs') %>
   <body>
-    <h1><%= title %></h1>
+    <header><%- include('partials/nav.ejs') %></header>
     <main>
-      <div class="categories">
-        <h4>Filter by category</h4>
-        <form>
-          <h5>Collection</h5>
-          <div class="collection hidden">
-            <label
-              ><input type="radio" name="collection" value="0" checked />
-              All</label
-            >
-          </div>
-          <% collections.map((item) => { %>
-          <div class="collection hidden">
-            <label>
-              <input
-                type="radio"
-                name="collection"
-                value="<%= item.collection_name %>"
-              />
-              <%= item.collection_name %>
-            </label>
-          </div>
-          <% }) %>
-        </form>
-        <form>
-          <h5>Wood</h5>
-          <div class="wood hidden">
-            <label
-              ><input type="radio" name="wood" value="0" checked /> All</label
-            >
-          </div>
-          <% wood.map((item) => { %>
-          <div class="wood hidden">
-            <label>
-              <input type="radio" name="wood" value="<%= item.wood_name %>" />
-              <%= item.wood_name %>
-            </label>
-          </div>
-          <% }) %>
-        </form>
-        <form>
-          <h5>Furniture type</h5>
-          <div class="ftype hidden">
-            <label>
-              <input type="radio" name="ftype" value="0" checked /> All
-            </label>
-          </div>
-          <% ftypes.map((item) => { %>
-          <div class="ftype hidden">
-            <label>
-              <input type="radio" name="ftype" value="<%= item.ftype_name %>" />
-              <%= item.ftype_name %>
-            </label>
-          </div>
-          <% }) %>
-        </form>
-        <form>
-          <h5>Rooms</h5>
-          <div class="room hidden">
-            <label
-              ><input type="radio" name="room" value="0" checked /> All</label
-            >
-          </div>
-          <% rooms.map((item) => { %>
-          <div class="room hidden">
-            <label>
-              <input type="radio" name="room" value="<%= item.room_name %>" />
-              <%= item.room_name %>
-            </label>
-          </div>
-          <% }) %>
-        </form>
-        <!-- TODO change this to be a form submit instead of a function -->
-        <button type="submit" onclick="submitCategorySearch()">Filter</button>
-      </div>
-      <div class="inventory">
-        <table>
-          <tbody>
-            <tr>
-              <th>Qty.</th>
-              <th>Product Name</th>
-              <th>Wood</th>
-              <th>SKU</th>
-              <th>Furniture Type</th>
-              <th>Collection</th>
-              <th>Room</th>
-            </tr>
-            <% inventory.map((item) => { %>
-            <tr
-              class="table-clickable"
-              data-href="/product/<%= item.finv_id %>"
-              id="<%= item.finv_id %>"
-            >
-              <td><%= item.finv_quantity %></td>
-              <td><%= item.furn_name %></td>
-              <td><%= item.wood_name || '—' %></td>
-              <td><%= item.finv_sku %></td>
-              <td><%= item.ftype_name || '—' %></td>
-              <td><%= item.collection_name || '—' %></td>
-              <td><%= item.room_name || '—' %></td>
-            </tr>
-          </tbody>
-          <% }) %>
-        </table>
+      <h1><%= title %></h1>
+      <div class="inventory-container">
+        <div class="categories">
+          <h4>Filter by category</h4>
+          <form>
+            <h5>Collection</h5>
+            <div class="collection hidden">
+              <label
+                ><input type="radio" name="collection" value="0" checked />
+                All</label
+              >
+            </div>
+            <% collections.map((item) => { %>
+            <div class="collection hidden">
+              <label>
+                <input
+                  type="radio"
+                  name="collection"
+                  value="<%= item.collection_name %>"
+                />
+                <%= item.collection_name %>
+              </label>
+            </div>
+            <% }) %>
+          </form>
+          <form>
+            <h5>Wood</h5>
+            <div class="wood hidden">
+              <label
+                ><input type="radio" name="wood" value="0" checked /> All</label
+              >
+            </div>
+            <% wood.map((item) => { %>
+            <div class="wood hidden">
+              <label>
+                <input type="radio" name="wood" value="<%= item.wood_name %>" />
+                <%= item.wood_name %>
+              </label>
+            </div>
+            <% }) %>
+          </form>
+          <form>
+            <h5>Furniture type</h5>
+            <div class="ftype hidden">
+              <label>
+                <input type="radio" name="ftype" value="0" checked /> All
+              </label>
+            </div>
+            <% ftypes.map((item) => { %>
+            <div class="ftype hidden">
+              <label>
+                <input
+                  type="radio"
+                  name="ftype"
+                  value="<%= item.ftype_name %>"
+                />
+                <%= item.ftype_name %>
+              </label>
+            </div>
+            <% }) %>
+          </form>
+          <form>
+            <h5>Rooms</h5>
+            <div class="room hidden">
+              <label
+                ><input type="radio" name="room" value="0" checked /> All</label
+              >
+            </div>
+            <% rooms.map((item) => { %>
+            <div class="room hidden">
+              <label>
+                <input type="radio" name="room" value="<%= item.room_name %>" />
+                <%= item.room_name %>
+              </label>
+            </div>
+            <% }) %>
+          </form>
+          <!-- TODO change this to be a form submit instead of a function -->
+          <button type="submit" onclick="submitCategorySearch()">Filter</button>
+        </div>
+        <div class="inventory">
+          <table>
+            <tbody>
+              <tr>
+                <th>Qty.</th>
+                <th>Product Name</th>
+                <th>Wood</th>
+                <th>SKU</th>
+                <th>Furniture Type</th>
+                <th>Collection</th>
+                <th>Room</th>
+              </tr>
+              <% inventory.map((item) => { %>
+              <tr
+                class="table-clickable"
+                data-href="/product/<%= item.finv_id %>"
+                id="<%= item.finv_id %>"
+              >
+                <td><%= item.finv_quantity %></td>
+                <td><%= item.furn_name %></td>
+                <td><%= item.wood_name || '—' %></td>
+                <td><%= item.finv_sku %></td>
+                <td><%= item.ftype_name || '—' %></td>
+                <td><%= item.collection_name || '—' %></td>
+                <td><%= item.room_name || '—' %></td>
+              </tr>
+            </tbody>
+            <% }) %>
+          </table>
+        </div>
       </div>
     </main>
     <script src="/index.js"></script>

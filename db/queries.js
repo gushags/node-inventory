@@ -188,22 +188,34 @@ async function deleteRoomById(room_id) {
 }
 
 async function getAllWood() {
-  const { rows } = await pool.query(`SELECT * FROM wood;`);
+  const { rows } = await pool.query(`
+    SELECT * FROM wood
+    ORDER BY wood_name;
+    `);
   return rows;
 }
 
 async function getAllTypes() {
-  const { rows } = await pool.query(`SELECT * FROM furniture_types;`);
+  const { rows } = await pool.query(`
+    SELECT * FROM furniture_types
+    ORDER BY ftype_name;
+    `);
   return rows;
 }
 
 async function getAllCollections() {
-  const { rows } = await pool.query(`SELECT * FROM collections;`);
+  const { rows } = await pool.query(`
+    SELECT * FROM collections
+    ORDER BY collection_name;
+    `);
   return rows;
 }
 
 async function getAllRooms() {
-  const { rows } = await pool.query(`SELECT * FROM rooms;`);
+  const { rows } = await pool.query(`
+    SELECT * FROM rooms
+    ORDER BY room_name;
+    `);
   return rows;
 }
 
