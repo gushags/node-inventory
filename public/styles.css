@@ -104,6 +104,16 @@ button:hover {
   background-color: #00800050;
 }
 
+.btn-danger {
+  background-color: rgb(255, 0, 0, 0.15);
+  border: 1.5px solid red;
+  color: red;
+}
+
+.btn-danger:hover {
+  background-color: rgb(255, 0, 0, 0.3);
+}
+
 /* table style */
 table {
   border-collapse: collapse;
@@ -300,4 +310,16 @@ select {
 
 input[type='checkbox'] {
   accent-color: green;
+}
+
+dialog {
+  margin: auto auto;
+  color: green;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 128, 0, 0.7); /* Dark semi-transparent overlay */
+  backdrop-filter: blur(
+    5px
+  ); /* Optional: add a blur effect to the background */
 }
