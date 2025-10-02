@@ -8,6 +8,7 @@ const {
   getProductByIdControl,
   updateProdByIdControl,
   deleteProductByIdControl,
+  deleteProductByFinvIdControl,
 } = require('../controllers/indexController');
 
 const indexRouter = Router();
@@ -24,5 +25,6 @@ indexRouter.get('/update/:id', getProductByIdControl);
 // is able to update, other is just 'read'.
 indexRouter.post('/product/:id', updateProdByIdControl);
 indexRouter.delete('/delete/:id', deleteProductByIdControl);
+indexRouter.delete('/delete/prod/:id', deleteProductByFinvIdControl);
 
 module.exports = indexRouter;

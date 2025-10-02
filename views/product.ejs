@@ -28,10 +28,8 @@
           <div class="card-bottom">
             <div>
               <p><strong>Wood:</strong> <%= inventory.wood_name %></p>
-              <p>
-                <strong>Furniture Type:</strong> <%= inventory.ftype_name %>
-              </p>
-              <p><strong>Room:</strong> <%= inventory.room_name %></p>
+              <p><strong>Furniture Type:</strong> <%= inventory.types %></p>
+              <p><strong>Rooms:</strong> <%= inventory.rooms %></p>
             </div>
             <div>
               <p><strong>Quantity:</strong> <%= inventory.finv_quantity %></p>
@@ -43,9 +41,19 @@
           <a href="/update/<%= inventory.finv_id %>">Edit</a>
           <form
             method="POST"
+            action="/delete/prod/<%= inventory.finv_id %>?_method=DELETE"
+          >
+            <button class="link-button danger" type="submit">
+              Delete SKU <%= inventory.finv_sku %>
+            </button>
+          </form>
+          <form
+            method="POST"
             action="/delete/<%= inventory.furn_id %>?_method=DELETE"
           >
-            <button class="link-button" type="submit">Delete</button>
+            <button class="link-button danger" type="submit">
+              Delete ALL <%= inventory.furn_name %>s
+            </button>
           </form>
         </div>
       </div>

@@ -14,7 +14,6 @@
     <main>
       <div class="prod-container">
         <div>
-          <h3>(Edit any field and click update when finished.)</h3>
           <form method="POST" action="/product/<%= inventory.finv_id %>">
             <input hidden name="furn_id" value="<%= inventory.furn_id %>" />
             <h1>
@@ -67,10 +66,11 @@
                 </option>
                 <% } }) %>
               </select>
-              <label for="ftype"><strong>Furniture Type:</strong></label>
+
+              <label for="ftype"><strong>Furniture Types:</strong></label>
               <select id="ftype" name="ftype">
                 <% ftypes.map((item) => { %> <% if (item.ftype_name ==
-                inventory.ftype_name) { %>
+                inventory.types) { %>
                 <option selected value="<%= item.ftype_id %>">
                   <%= item.ftype_name %>
                 </option>
@@ -80,19 +80,33 @@
                 </option>
                 <% } }) %>
               </select>
-              <label for="room"><strong>Room:</strong></label>
-              <select id="room" name="room">
-                <% rooms.map((item) => { %> <% if (item.room_name ==
-                inventory.room_name) { %>
-                <option selected value="<%= item.room_id %>">
-                  <%= item.room_name %>
-                </option>
-                <% } else { %>
-                <option value="<%= item.room_id %>">
-                  <%= item.room_name %>
-                </option>
-                <% } }) %>
-              </select>
+              <div class="update-rooms">
+                <fieldset>
+                  <legend><strong>Rooms</strong></legend>
+                  <% rooms.map(item => { %> <% if
+                  (inventory.rooms.includes(item.room_name)) { %>
+                  <label>
+                    <input
+                      type="checkbox"
+                      name="roomIds[]"
+                      value="<%= item.room_id %>"
+                      checked
+                    />
+                    <%= item.room_name %>
+                  </label>
+                  <% } else { %>
+                  <label>
+                    <input
+                      type="checkbox"
+                      name="roomIds[]"
+                      value="<%= item.room_id %>"
+                    />
+                    <%= item.room_name %>
+                  </label>
+                  <% } }) %>
+                </fieldset>
+              </div>
+
               <label for="quantity"><strong>Quantity:</strong></label>
               <input
                 type="number"

@@ -46,6 +46,7 @@ async function getInventoryByIdControl(req, res) {
     inventory: inventory,
   });
 }
+
 async function getProductByIdControl(req, res) {
   const { id } = req.params;
   const inventory = await db.getInventoryById(id);
@@ -73,7 +74,7 @@ async function updateProdByIdControl(req, res) {
     quantity,
     wood,
     ftype,
-    room,
+    roomIds,
     collection,
   } = req.body;
   const id = req.params.id;
@@ -85,7 +86,7 @@ async function updateProdByIdControl(req, res) {
     quantity,
     wood,
     ftype,
-    room,
+    roomIds,
     collection
   );
   res.render('product', {
@@ -95,9 +96,19 @@ async function updateProdByIdControl(req, res) {
   });
 }
 
+// Delete from furniture all products of type furn_id
+// e.g., all Cantos Chairs whatever the wood species
 async function deleteProductByIdControl(req, res) {
   const furn_id = req.params.id;
   await db.deleteProductById(furn_id);
+  res.redirect('/');
+}
+
+// Delete invidual product from inventory
+// using finv_id
+async function deleteProductByFinvIdControl(req, res) {
+  const finv_id = req.params.id;
+  await db.deleteProductByFinvId(finv_id);
   res.redirect('/');
 }
 
@@ -108,4 +119,5 @@ module.exports = {
   getProductByIdControl: catchAsyncErr(getProductByIdControl),
   updateProdByIdControl: catchAsyncErr(updateProdByIdControl),
   deleteProductByIdControl: catchAsyncErr(deleteProductByIdControl),
+  deleteProductByFinvIdControl: catchAsyncErr(deleteProductByFinvIdControl),
 };

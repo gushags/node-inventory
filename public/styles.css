@@ -19,7 +19,7 @@ hr {
 h1,
 h2 {
   margin-top: 25px;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
   text-align: center;
 }
 
@@ -260,9 +260,19 @@ select {
   text-decoration: underline;
 }
 
+.danger {
+  color: red;
+}
+
 .link-button:hover {
   color: rgb(1, 68, 1);
   background-color: lightgreen;
+  border-radius: none;
+}
+
+.danger:hover {
+  color: red;
+  background-color: pink;
   border-radius: none;
 }
 
@@ -281,4 +291,13 @@ select {
 
 select {
   margin-bottom: 10px;
+}
+
+.update-rooms {
+  grid-column: 1 / 3;
+  margin-bottom: 10px;
+}
+
+input[type='checkbox'] {
+  accent-color: green;
 }

@@ -262,6 +262,7 @@ INSERT INTO inventory_types (furn_id, ftype_id)
   VALUES
       (500, 303),
       (501, 308),
+      (502, 307),
       (503, 302),
       (504, 301),
       (505, 300),
