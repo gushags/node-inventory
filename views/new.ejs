@@ -8,57 +8,82 @@
     <link rel="stylesheet" href="/styles.css" />
     <title><%= title %></title>
   </head>
-  <%- include('partials/nav.ejs') %>
-  <body>
+  <body class="new-page">
+    <header class="white-background"><%- include('partials/nav.ejs') %></header>
     <h1>Create a new furniture item.</h1>
-    <form action="/new" method="POST">
-      <label for="name">Name:</label>
-      <input
-        type="text"
-        name="name"
-        id="name"
-        placeholder="Enter furniture name"
-      />
-      <label for="description">Description:</label>
-      <input
-        type="textarea"
-        name="description"
-        id="description"
-        placeholder="Describe the new furniture."
-      />
-      <label for="quantity">Quantity:</label>
-      <input type="number" name="quantity" id="quantity" min="0" />
-      <label for="wood">Wood:</label>
-      <select id="wood" name="wood">
-        <option disabled selected value>-- select an option --</option>
-        <% wood.map((item) => { %>
-        <option value="<%= item.wood_id %>"><%= item.wood_name %></option>
-        <% }) %>
-      </select>
-      <label for="ftype">Furniture Type:</label>
-      <select id="ftype" name="ftype">
-        <option disabled selected value>-- select an option --</option>
-        <% ftypes.map((item) => { %>
-        <option value="<%= item.ftype_id %>"><%= item.ftype_name %></option>
-        <% }) %>
-      </select>
-      <label for="room">Room:</label>
-      <select id="room" name="room">
-        <option disabled selected value>-- select an option --</option>
-        <% rooms.map((item) => { %>
-        <option value="<%= item.room_id %>"><%= item.room_name %></option>
-        <% }) %>
-      </select>
-      <label for="collection">Collection:</label>
-      <select id="collection" name="collection">
-        <option disabled selected value>-- select an option --</option>
-        <% collections.map((item) => { %>
-        <option value="<%= item.collection_id %>">
-          <%= item.collection_name %>
-        </option>
-        <% }) %>
-      </select>
-      <button type="submit">Submit</button>
-    </form>
+    <div class="new-container">
+      <form action="/new" method="POST">
+        <div>
+          <label for="name"><strong>Name:</strong></label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Enter furniture name"
+          />
+        </div>
+        <div>
+          <label for="description"><strong>Description:</strong></label>
+          <textarea
+            type="text"
+            name="description"
+            id="description"
+            placeholder="Describe the new furniture."
+          ></textarea>
+        </div>
+        <div class="card-bottom">
+          <div>
+            <label for="quantity"><strong>Quantity:</strong></label>
+            <input type="number" name="quantity" id="quantity" min="0" />
+            <label for="collection"><strong>Collection:</strong></label>
+            <select id="collection" name="collection">
+              <option disabled selected value>-- select an option --</option>
+              <% collections.map((item) => { %>
+              <option value="<%= item.collection_id %>">
+                <%= item.collection_name %>
+              </option>
+              <% }) %>
+            </select>
+          </div>
+          <div>
+            <div>
+              <label for="wood"><strong>Wood:</strong></label>
+              <select id="wood" name="wood">
+                <option disabled selected value>-- select an option --</option>
+                <% wood.map((item) => { %>
+                <option value="<%= item.wood_id %>">
+                  <%= item.wood_name %>
+                </option>
+                <% }) %>
+              </select>
+            </div>
+            <div>
+              <label for="ftype"><strong>Furniture Type:</strong></label>
+              <select id="ftype" name="ftype">
+                <option disabled selected value>-- select an option --</option>
+                <% ftypes.map((item) => { %>
+                <option value="<%= item.ftype_id %>">
+                  <%= item.ftype_name %>
+                </option>
+                <% }) %>
+              </select>
+            </div>
+
+            <div>
+              <label for="room"><strong>Room:</strong></label>
+              <select id="room" name="room">
+                <option disabled selected value>-- select an option --</option>
+                <% rooms.map((item) => { %>
+                <option value="<%= item.room_id %>">
+                  <%= item.room_name %>
+                </option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   </body>
 </html>

@@ -66,6 +66,10 @@ a:-webkit-any-link:hover {
   grid-template-columns: 1fr 6fr;
 }
 
+label {
+  margin-right: 10px;
+}
+
 .collection,
 .wood,
 .ftype,
@@ -146,6 +150,39 @@ th {
   text-decoration: underline;
   cursor: pointer;
   margin: 10px 0;
+}
+
+/* New product styles */
+.new-page {
+  background-color: green;
+  color: white;
+}
+
+.new-container {
+  width: 60%;
+  margin: 70px auto;
+  background-color: white;
+  border: 5px solid #00800050;
+  border-radius: 20px;
+  padding: 25px;
+  color: green;
+  font-size: 1.15rem;
+}
+
+.new-container > form > div > input {
+  margin-bottom: 10px;
+}
+
+.card-bottom > div > input {
+  margin-bottom: 40px;
+}
+
+#name {
+  width: 100%;
+}
+
+.white-background {
+  background-color: white;
 }
 
 /* Product page style */
@@ -242,6 +279,6 @@ select {
   font-size: 1.15rem;
 }
 
-.card-bottom > select {
+select {
   margin-bottom: 10px;
 }
