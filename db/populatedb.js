@@ -62,7 +62,7 @@ CREATE TABLE furniture_inventory (
   ftype_id INT,
   room_id INT,
   finv_sku TEXT GENERATED ALWAYS AS (
-    (furn_id::TEXT || wood_id::TEXT)
+    (furn_id::TEXT || wood_id::TEXT || finv_id::TEXT)
   ) STORED,
   PRIMARY KEY(finv_id),
   CONSTRAINT fk_furniture
@@ -81,6 +81,7 @@ CREATE TABLE furniture_inventory (
       FOREIGN KEY(room_id)
         REFERENCES rooms(room_id)
             ON DELETE SET NULL
+  CONSTRAINT unique_variant UNIQUE (furn_id, wood_id)
 );
 ALTER SEQUENCE furniture_inventory_finv_id_seq RESTART WITH 1000;
 

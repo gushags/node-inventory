@@ -13,10 +13,10 @@
       <%- include('partials/nav.ejs') %>
     </header>
     <main>
-      <% if (alert) { %>
-      <div><%= alert %></div>
-      <% } %>
       <div class="prod-container">
+        <% if (alert) { %>
+        <div><%= alert %></div>
+        <% } %>
         <div>
           <h1><%= inventory.furn_name %></h1>
           <h2 id="coll-name" data-collection="<%= inventory.collection_name %>">

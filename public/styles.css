@@ -178,6 +178,28 @@ th {
   font-size: 1.25rem;
 }
 
+input,
+#description {
+  border-style: dotted;
+  border-color: green;
+  padding-left: 10px;
+  color: green;
+}
+input:focus-visible,
+select:focus-visible,
+#description:focus-visible {
+  outline-color: green;
+}
+
+select {
+  color: green;
+  border-color: green;
+}
+
+#description {
+  width: 100%;
+}
+
 .white-text > nav > a {
   color: white;
 }
@@ -212,4 +234,14 @@ th {
   gap: 20px;
   margin-top: 20px;
   font-size: 1.15rem;
+}
+
+#desc-container {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.15rem;
+}
+
+.card-bottom > select {
+  margin-bottom: 10px;
 }
