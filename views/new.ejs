@@ -10,7 +10,7 @@
   </head>
   <body class="new-page">
     <header class="white-background"><%- include('partials/nav.ejs') %></header>
-    <h1>Create a new furniture item.</h1>
+    <h1 id="new-head">Create a new furniture item.</h1>
     <div class="new-container">
       <form id="new-product" action="/new" method="POST">
         <div>
@@ -33,7 +33,7 @@
             placeholder="Describe the new furniture."
           ></textarea>
         </div>
-        <div class="card-bottom">
+        <div class="new-card-bottom">
           <div>
             <label for="ftype"><strong>Furniture Type:</strong></label>
             <select id="ftype" name="ftype" required>
@@ -56,8 +56,8 @@
               <% }) %>
             </select>
           </div>
-          <div>
-            <div class="update-rooms">
+          <div id="new-woods">
+            <div>
               <p id="wood-validation"></p>
               <fieldset>
                 <legend><strong>Wood</strong></legend>
@@ -75,41 +75,42 @@
                 <% }) %>
               </fieldset>
             </div>
-            <div class="quantity">
+            <div class="quantity qty-grid">
               <p id="qty-validation"></p>
-              <label for="quantity"><strong>Quantity:</strong></label>
+              <label for="quantity" id="qty-label"
+                ><strong>Quantity:</strong></label
+              >
               <% wood.map(item => { %>
-              <div>
-                <label
-                  ><%= item.wood_name %>
-                  <input
-                    disabled
-                    type="number"
-                    name="quantityCnt[]"
-                    class="qty-input"
-                    data-wood-id="<%= item.wood_id %>"
-                  />
-                </label>
+              <div class="qty-group">
+                <label><%= item.wood_name %></label>
+                <input
+                  disabled
+                  type="number"
+                  name="quantityCnt[]"
+                  class="qty-input"
+                  data-wood-id="<%= item.wood_id %>"
+                />
               </div>
+
               <% }) %>
             </div>
+          </div>
 
-            <div class="update-rooms">
-              <p id="rooms-validation"></p>
-              <fieldset>
-                <legend><strong>Rooms</strong></legend>
-                <% rooms.map(item => { %>
-                <label>
-                  <input
-                    type="checkbox"
-                    name="roomIds[]"
-                    value="<%= item.room_id %>"
-                  />
-                  <%= item.room_name %>
-                </label>
-                <% }) %>
-              </fieldset>
-            </div>
+          <div class="update-rooms">
+            <p id="rooms-validation"></p>
+            <fieldset>
+              <legend><strong>Rooms</strong></legend>
+              <% rooms.map(item => { %>
+              <label>
+                <input
+                  type="checkbox"
+                  name="roomIds[]"
+                  value="<%= item.room_id %>"
+                />
+                <%= item.room_name %>
+              </label>
+              <% }) %>
+            </fieldset>
           </div>
         </div>
         <button type="submit">Submit</button>
