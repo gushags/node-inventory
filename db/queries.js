@@ -21,7 +21,7 @@ async function getAllInventory() {
   JOIN wood w
       ON fi.wood_id = w.wood_id
   LEFT JOIN collections c
-          ON fi.collection_id = c.collection_id
+          ON f.collection_id = c.collection_id
   LEFT JOIN inventory_types it
       ON f.furn_id = it.furn_id
   LEFT JOIN furniture_types ft
@@ -68,7 +68,7 @@ async function getInventoryByCategory(category) {
   JOIN wood w
       ON fi.wood_id = w.wood_id
   LEFT JOIN collections c
-      ON fi.collection_id = c.collection_id
+      ON f.collection_id = c.collection_id
   LEFT JOIN inventory_types it
       ON f.furn_id = it.furn_id
   LEFT JOIN furniture_types ft
@@ -117,7 +117,7 @@ async function getInventoryById(id) {
   JOIN wood w
       ON fi.wood_id = w.wood_id
   LEFT JOIN collections c
-      ON fi.collection_id = c.collection_id
+      ON f.collection_id = c.collection_id
   LEFT JOIN inventory_types it
       ON f.furn_id = it.furn_id
   LEFT JOIN furniture_types ft
@@ -337,11 +337,10 @@ async function updateProductById(
       `
       UPDATE furniture_inventory
         SET finv_quantity = $1,
-            wood_id = $2,
-            collection_id = $3
-        WHERE finv_id = $4
+            wood_id = $2
+        WHERE finv_id = $3
       `,
-      [quantity, wood, collection, id]
+      [quantity, wood, id]
     );
 
     // --- Update ROOM TAGS ---
@@ -381,7 +380,7 @@ async function updateProductById(
       FROM furniture_inventory fi
       JOIN furniture f ON fi.furn_id = f.furn_id
       LEFT JOIN wood w ON fi.wood_id = w.wood_id
-      LEFT JOIN collections c ON fi.collection_id = c.collection_id
+      LEFT JOIN collections c ON f.collection_id = c.collection_id
       LEFT JOIN inventory_types it ON f.furn_id = it.furn_id
       LEFT JOIN furniture_types ft ON it.ftype_id = ft.ftype_id
       LEFT JOIN inventory_rooms ir ON f.furn_id = ir.furn_id
