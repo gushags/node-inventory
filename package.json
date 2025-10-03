@@ -1,4 +1,23 @@
 {
+  "name": "node-inventory",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gushags/node-inventory.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gushags/node-inventory/issues"
+  },
+  "homepage": "https://github.com/gushags/node-inventory#readme",
   "dependencies": {
     "dotenv": "^17.2.2",
     "ejs": "^3.1.10",

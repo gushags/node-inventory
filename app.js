@@ -21,9 +21,9 @@ const assetsPath = path.join(__dirname, 'public');
 app.use(express.static(assetsPath));
 
 // routers
-const indexRouter = require('./routes/indexRouter.js');
-const newRouter = require('./routes/newRouter.js');
-const categoryRouter = require('./routes/categoryRouter.js');
+const indexRouter = require('./routes/indexRouter');
+const newRouter = require('./routes/newRouter');
+const categoryRouter = require('./routes/categoryRouter');
 
 // Routers
 app.use('/new', newRouter);
