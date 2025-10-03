@@ -33,8 +33,17 @@
         </div>
         <div class="card-bottom">
           <div>
-            <label for="quantity"><strong>Quantity:</strong></label>
-            <input type="number" name="quantity" id="quantity" min="0" />
+            <label for="ftype"><strong>Furniture Type:</strong></label>
+            <select id="ftype" name="ftype">
+              <option disabled selected value>-- select an option --</option>
+              <% ftypes.map((item) => { %>
+              <option value="<%= item.ftype_id %>">
+                <%= item.ftype_name %>
+              </option>
+              <% }) %>
+            </select>
+          </div>
+          <div>
             <label for="collection"><strong>Collection:</strong></label>
             <select id="collection" name="collection">
               <option disabled selected value>-- select an option --</option>
@@ -46,44 +55,61 @@
             </select>
           </div>
           <div>
-            <div>
-              <label for="wood"><strong>Wood:</strong></label>
-              <select id="wood" name="wood">
-                <option disabled selected value>-- select an option --</option>
-                <% wood.map((item) => { %>
-                <option value="<%= item.wood_id %>">
+            <div class="update-rooms">
+              <fieldset>
+                <legend><strong>Wood</strong></legend>
+                <% wood.map(item => { %>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="woodIds[]"
+                    class="wood-input"
+                    data-wood-id="<%= item.wood_id %>"
+                    value="<%= item.wood_id %>"
+                  />
                   <%= item.wood_name %>
-                </option>
+                </label>
                 <% }) %>
-              </select>
+              </fieldset>
             </div>
-            <div>
-              <label for="ftype"><strong>Furniture Type:</strong></label>
-              <select id="ftype" name="ftype">
-                <option disabled selected value>-- select an option --</option>
-                <% ftypes.map((item) => { %>
-                <option value="<%= item.ftype_id %>">
-                  <%= item.ftype_name %>
-                </option>
-                <% }) %>
-              </select>
+            <div class="quantity">
+              <label for="quantity"><strong>Quantity:</strong></label>
+              <% wood.map(item => { %>
+              <div>
+                <label
+                  ><%= item.wood_name %>
+                  <input
+                    disabled
+                    type="number"
+                    name="quantityCnt[]"
+                    class="qty-input"
+                    data-wood-id="<%= item.wood_id %>"
+                  />
+                </label>
+              </div>
+              <% }) %>
             </div>
 
-            <div>
-              <label for="room"><strong>Room:</strong></label>
-              <select id="room" name="room">
-                <option disabled selected value>-- select an option --</option>
-                <% rooms.map((item) => { %>
-                <option value="<%= item.room_id %>">
+            <div class="update-rooms">
+              <fieldset>
+                <legend><strong>Rooms</strong></legend>
+                <% rooms.map(item => { %>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="roomIds[]"
+                    value="<%= item.room_id %>"
+                  />
                   <%= item.room_name %>
-                </option>
+                </label>
                 <% }) %>
-              </select>
+              </fieldset>
             </div>
           </div>
         </div>
         <button type="submit">Submit</button>
       </form>
     </div>
+    <script src="/new.js"></script>
   </body>
 </html>

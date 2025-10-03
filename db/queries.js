@@ -165,16 +165,6 @@ async function createNewFurniture(name, description, collection) {
   return result.rows[0];
 }
 
-async function createNewProduct(furn_id, quantity, wood, ftype, room) {
-  await pool.query(
-    `
-    INSERT INTO furniture_inventory (furn_id, finv_quantity, wood_id, ftype_id, room_id )
-    VALUES ($1, $2, $3, $4, $5)
-    `,
-    [furn_id, quantity, wood, ftype, room]
-  );
-}
-
 async function createNewCollection(name) {
   await pool.query(
     `INSERT INTO collections (collection_name)
@@ -204,6 +194,30 @@ async function createNewRoom(name) {
     `INSERT INTO rooms (room_name)
     VALUES ($1)`,
     [name]
+  );
+}
+
+async function createNewInventoryItem(furn_id, wood_id, quantity) {
+  await pool.query(
+    `INSERT INTO furniture_inventory (furn_id, wood_id, finv_quantity)
+    VALUES ($1, $2, $3)`,
+    [furn_id, wood_id, quantity]
+  );
+}
+
+async function createNewInventoryTypes(furn_id, ftype_id) {
+  await pool.query(
+    `INSERT INTO inventory_types (furn_id, ftype_id)
+    VALUES ($1, $2)`,
+    [furn_id, ftype_id]
+  );
+}
+
+async function createNewInventoryRooms(furn_id, room_id) {
+  await pool.query(
+    `INSERT INTO inventory_rooms (furn_id, room_id)
+    VALUES ($1, $2)`,
+    [furn_id, room_id]
   );
 }
 
@@ -412,7 +426,9 @@ module.exports = {
   createNewFtype,
   createNewRoom,
   createNewFurniture,
-  createNewProduct,
+  createNewInventoryItem,
+  createNewInventoryTypes,
+  createNewInventoryRooms,
   deleteProductById,
   deleteProductByFinvId,
   deleteCollectionById,
