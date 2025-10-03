@@ -324,3 +324,9 @@ dialog::backdrop {
     5px
   ); /* Optional: add a blur effect to the background */
 }
+
+#wood-validation,
+#qty-validation,
+#rooms-validation {
+  color: red;
+}

@@ -12,10 +12,11 @@
     <header class="white-background"><%- include('partials/nav.ejs') %></header>
     <h1>Create a new furniture item.</h1>
     <div class="new-container">
-      <form action="/new" method="POST">
+      <form id="new-product" action="/new" method="POST">
         <div>
           <label for="name"><strong>Name:</strong></label>
           <input
+            required
             type="text"
             name="name"
             id="name"
@@ -25,6 +26,7 @@
         <div>
           <label for="description"><strong>Description:</strong></label>
           <textarea
+            required
             type="text"
             name="description"
             id="description"
@@ -34,7 +36,7 @@
         <div class="card-bottom">
           <div>
             <label for="ftype"><strong>Furniture Type:</strong></label>
-            <select id="ftype" name="ftype">
+            <select id="ftype" name="ftype" required>
               <option disabled selected value>-- select an option --</option>
               <% ftypes.map((item) => { %>
               <option value="<%= item.ftype_id %>">
@@ -45,7 +47,7 @@
           </div>
           <div>
             <label for="collection"><strong>Collection:</strong></label>
-            <select id="collection" name="collection">
+            <select id="collection" name="collection" required>
               <option disabled selected value>-- select an option --</option>
               <% collections.map((item) => { %>
               <option value="<%= item.collection_id %>">
@@ -56,6 +58,7 @@
           </div>
           <div>
             <div class="update-rooms">
+              <p id="wood-validation"></p>
               <fieldset>
                 <legend><strong>Wood</strong></legend>
                 <% wood.map(item => { %>
@@ -73,6 +76,7 @@
               </fieldset>
             </div>
             <div class="quantity">
+              <p id="qty-validation"></p>
               <label for="quantity"><strong>Quantity:</strong></label>
               <% wood.map(item => { %>
               <div>
@@ -91,6 +95,7 @@
             </div>
 
             <div class="update-rooms">
+              <p id="rooms-validation"></p>
               <fieldset>
                 <legend><strong>Rooms</strong></legend>
                 <% rooms.map(item => { %>
