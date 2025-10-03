@@ -334,10 +334,8 @@ dialog {
 }
 
 dialog::backdrop {
-  background-color: rgba(0, 128, 0, 0.7); /* Dark semi-transparent overlay */
-  backdrop-filter: blur(
-    5px
-  ); /* Optional: add a blur effect to the background */
+  background-color: rgba(0, 128, 0, 0.7);
+  backdrop-filter: blur(5px);
 }
 
 #new-head {
@@ -370,13 +368,3 @@ dialog::backdrop {
 .qty-input {
   max-width: 100px;
 }
-/*
-.qty-group > label {
-  flex-shrink: 0; /* Prevents the label from shrinking
-  margin-right: 10px; /* Adds space between the label and input
-}
-
-.qty-group > input {
-  flex-grow: 1; /* Allows the input to take up available space
-  display: grid;
-} */
