@@ -4,6 +4,19 @@ const path = require('node:path');
 const app = express();
 const methodOverride = require('method-override');
 
+// Populate database on every load
+const { execSync } = require('child_process');
+
+try {
+  console.log('Populating database...');
+  execSync('node db/populatedb.js', { stdio: 'inherit' });
+  console.log('Database population complete.');
+} catch (error) {
+  console.error('Error populating database:', error);
+  // Handle error appropriately, e.g., exit the application
+  process.exit(1);
+}
+
 // Allow data to be read from req.body
 app.use(express.urlencoded({ extended: true }));
 
